@@ -45,7 +45,7 @@ import Lucid.Base (HtmlT, Term, makeAttribute, makeElement, makeElementNoEnd, te
 
 someFunc :: IO ()
 someFunc = do
-  Lucid.renderToFile "../dist/index'.html" indexHtml
+  Lucid.renderToFile "../dist/indexT.html" indexHtml
 
 ----------------
 -- COMPONENTS --
@@ -83,7 +83,7 @@ path_ = with (makeElementNoEnd "path")
 -- pretty much every page.
 navbar :: Html ()
 navbar = do
-  nav_ [mkClasses_ "flex items-center justify-between flex-wrap bg-teal-500 p-6"] $ do
+  nav_ [mkClasses_ "flex items-center justify-between flex-wrap bg-white p-6"] $ do
     div_ [mkClasses_ "flex items-center flex-shrink-0 text-white mr-6"] $ do
       img_ [src_ "logo.png", width_ "54", height_ "54", viewBox_ "0 0 54 54"]
       span_ [mkClasses_ "font-semibold text-xl tracking-tight"] "Tailwind CSS"

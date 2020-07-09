@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -32,5 +33,19 @@ module.exports = {
     watchContentBase: true,
     contentBase: path.resolve(__dirname, 'dist'),
     open: true
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+        template: './dist/indexT.html',
+        inject: true,
+        chunks: ['index'],
+        filename: './dist/indexT.html'
+    }),
+    new HtmlWebpackPlugin({
+        template: './dist/index.html',
+        inject: true,
+        chunks: ['index'],
+        filename: './dist/index.html'
+    })
+  ]
 }
