@@ -23,7 +23,7 @@ var PS = {};
   "use strict";
   $PS["Main"] = $PS["Main"] || {};
   var exports = $PS["Main"];
-  var Effect_Console = $PS["Effect.Console"];
+  var Effect_Console = $PS["Effect.Console"];                
   var main = Effect_Console.log("\ud83c\udf5d");
   exports["main"] = main;
 })(PS);

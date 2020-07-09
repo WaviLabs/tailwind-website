@@ -5,6 +5,7 @@
   "main": "postcss.config.js",
   "scripts": {
     "start": "webpack-dev-server --mode=development --config webpack.config.js",
+    "purs-to-js": "cd ./purs && bash purs-to-js.sh && cd ../",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
