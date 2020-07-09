@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e337e0eef616c0e0cfa8521a249cc8bee588b7650e559f94c0344b01f6f7ee61
+-- hash: cbd45e524e5fdab1fce456f5388e14555b6e721c4a2ce68d024fee0652676524
 
 name:           html-gen
 version:        0.1.0.0
@@ -35,6 +35,7 @@ library
   build-depends:
       base >=4.7 && <5
     , lucid >=2.9.12
+    , text
   default-language: Haskell2010
 
 executable html-gen-exe
@@ -48,6 +49,7 @@ executable html-gen-exe
       base >=4.7 && <5
     , html-gen
     , lucid >=2.9.12
+    , text
   default-language: Haskell2010
 
 test-suite html-gen-test
@@ -62,4 +64,5 @@ test-suite html-gen-test
       base >=4.7 && <5
     , html-gen
     , lucid >=2.9.12
+    , text
   default-language: Haskell2010
