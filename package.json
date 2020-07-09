@@ -1,0 +1,30 @@
+{
+  "name": "tailwind-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "postcss.config.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode=development --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wavi-labs/tailwind-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wavi-labs/tailwind-website/issues"
+  },
+  "homepage": "https://github.com/wavi-labs/tailwind-website#readme",
+  "devDependencies": {
+    "css-loader": "^3.6.0",
+    "postcss": "^7.0.32",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.2.1",
+    "tailwindcss": "^1.4.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
