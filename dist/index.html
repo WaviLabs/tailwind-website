@@ -13,7 +13,7 @@
   <!-- NAVBAR START -->
   <nav class="fixed top-0 w-full z-10 bg-white p-6 shadow">
     <!-- LARGE NAVBAR -->
-    <div class="w-full flex-grow flex items-center justify-between">
+    <div class="w-full flex flex-wrap items-center justify-between">
       <div class="lg:flex hidden text-lg">
         <span>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
@@ -23,10 +23,10 @@
             Services
           </a>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
-            Tools
+            Code
           </a>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white">
-            Contact Us
+            FAQ
           </a>
         </span>
       </div>
@@ -45,14 +45,71 @@
         </button>
       </div>
       <div class="block items-center lg:hidden text-lg">
-        <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-blue border-blue hover:text-gray-800 hover:border-teal-500">
+        <button id="nav-toggle" class="flex flex-wrap items-center px-3 py-2 border rounded text-blue border-blue">
           <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg>
         </button>
+      </div>
+      <div id="nav-content" class="w-full items-center mt-2 z-20 hidden">
+        <ul class="list-reset flex flex-col justify-end flex-1 items-center">
+          <li>
+            <a class="inline-block py-2 px-4 text-black no-underline" href="#">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
+              Services
+            </a>
+          </li>
+          <li>
+            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
+              Tools
+            </a>
+          </li>
+          <li>
+            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
+              FAQ
+            </a>
+          </li>
+          <li>
+            <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+              Button
+            </button>
+          </li>
+        </ul>
       </div>
 
     </div>
   </nav>
   <!-- NAVBAR END -->
+
+  <!-- <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+      <span class="font-semibold text-xl tracking-tight">Tailwind CSS</span>
+    </div>
+    <div class="block lg:hidden">
+      <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      </button>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="text-sm lg:flex-grow">
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+          Docs
+        </a>
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+          Examples
+        </a>
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+          Blog
+        </a>
+      </div>
+      <div>
+        <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+      </div>
+    </div>
+  </nav> -->
 
   <!-- HERO START -->
   <div class="bg-blue flex flex-col md:flex-row items-center pt-40 pb-16">
@@ -144,7 +201,7 @@
   <section class="border-b py-8">
     <div class="container mx-auto">
             <!-- Our Journey -->
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap-reverse">
         <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow-lg px-8 py-8">
           <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
           <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
@@ -184,7 +241,7 @@
       <br>
       <br>
 
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap-reverse">
         <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow-lg px-8 py-8">
           <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
           <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
@@ -252,5 +309,39 @@
 </body>
 
 <script src="bundle.js"></script>
+<script>
+	/*Toggle dropdown list*/
+	/*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+
+	var navMenuDiv = document.getElementById("nav-content");
+	var navMenu = document.getElementById("nav-toggle");
+
+	document.onclick = check;
+	function check(e){
+	  var target = (e && e.target) || (event && event.srcElement);
+
+	  //Nav Menu
+	  if (!checkParent(target, navMenuDiv)) {
+		// click NOT on the menu
+		if (checkParent(target, navMenu)) {
+		  // click on the link
+		  if (navMenuDiv.classList.contains("hidden")) {
+			navMenuDiv.classList.remove("hidden");
+		  } else {navMenuDiv.classList.add("hidden");}
+		} else {
+		  // click both outside link and outside menu, hide menu
+		  navMenuDiv.classList.add("hidden");
+		}
+	  }
+
+	}
+	function checkParent(t, elm) {
+	  while(t.parentNode) {
+		if( t == elm ) {return true;}
+		t = t.parentNode;
+	  }
+	  return false;
+	}
+</script>
 
 </html>
