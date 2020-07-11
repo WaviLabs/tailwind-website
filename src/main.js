@@ -24,7 +24,7 @@ var PS = {};
   $PS["Main"] = $PS["Main"] || {};
   var exports = $PS["Main"];
   var Effect_Console = $PS["Effect.Console"];                
-  var main = Effect_Console.log("\ud83c\udf5d");
+  var main = Effect_Console.log("Hello, Diamond!!\u2764\ufe0f");
   exports["main"] = main;
 })(PS);
 PS["Main"].main();

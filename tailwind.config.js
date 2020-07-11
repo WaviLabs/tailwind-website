@@ -7,6 +7,7 @@ module.exports = {
         green: '#71eeb8',
         pearl: '#EAE0C8',
         coral: '#FF7F50',
+        coral_pink: '#F08080',
       }
     },
   },

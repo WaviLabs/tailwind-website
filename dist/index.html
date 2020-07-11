@@ -9,40 +9,55 @@
 </head>
 
 <!-- Implement gradeint class in CSS -->
-
-<body class="bg-blue font-sans text-white leading-normal tracking-normal gradient">
+<body class="bg-white font-sans text-white leading-normal tracking-normal gradient">
   <!-- NAVBAR START -->
   <nav class="fixed top-0 w-full z-10 bg-white p-6 shadow">
     <!-- LARGE NAVBAR -->
-    <div class="w-full block flex-grow lg:flex lg:items-center justify-between lg:w-auto">
-      <div class="flex text-lg items-center">
+    <div class="w-full flex-grow flex items-center justify-between">
+      <div class="lg:flex hidden text-lg">
         <span>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
             Blog
           </a>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
-            Codes
+            Services
+          </a>
+          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
+            Tools
           </a>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white">
-            Services
+            Contact Us
           </a>
         </span>
       </div>
-      <div class="flex items-center">
+      <div class="lg:flex lg:items-center hidden">
         <img src="logo.png" alt="logo" width="300" height="300" viewBox="0 0 250 250">
       </div>
-      <div class="flex items-center">
+      <div class="flex items-center lg:hidden">
+        <img src="logo.png" alt="logo" width="200" height="200" viewBox="0 0 250 250">
+      </div>
+      <div class="lg:flex lg:items-center hidden text-lg">
+        <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-8">
+          Button
+        </button>
         <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
           Button
         </button>
       </div>
+      <div class="block items-center lg:hidden text-lg">
+        <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-blue border-blue hover:text-gray-800 hover:border-teal-500">
+          <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg>
+        </button>
+      </div>
+
     </div>
   </nav>
   <!-- NAVBAR END -->
+
   <!-- HERO START -->
-  <div class="bg-green mx-auto flex flex-col md:flex-row items-center pt-40 pb-16">
+  <div class="bg-blue flex flex-col md:flex-row items-center pt-40 pb-16">
     <!--Left Col-->
-    <div class="flex flex-col w-full lg:w-1/2 justify-center items-start text-blue py-12 px-6 ml-6 bg-white rounded shadow-lg">
+    <div class="flex flex-col w-full lg:w-1/2 md:ml-6 justify-center items-start text-blue py-12 px-6 bg-white rounded shadow-lg">
       <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
       <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
       <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
@@ -54,9 +69,9 @@
         Button</button>
     </div>
     <!--Right Col-->
-    <div class="flex flex-col w-full lg:w-1/2 lg:py-6 text-center">
+    <div class="md:flex md:flex-col md:w-full lg:w-1/2 lg:py-6 text-center hidden">
       <!--Add your product image here-->
-      <svg class="fill-current text-white w-3/5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+      <svg class="fill-current mx-auto text-white w-3/5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
         <path
           d="M17 6V5h-2V2H3v14h5v4h3.25H11a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6zm-5.75 14H3a2 2 0 0 1-2-2V2c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-5.75zM11 8v8h6V8h-6zm3 11a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
         </path>
@@ -64,113 +79,176 @@
     </div>
   </div>
 
-  <div class="container items-center mx-auto flex flex-wrap py-6">
-
-
-
-    <!-- Our Process Timeline -->
-    <div class="relative m-8">
-      <div class="border-r-2 border-green absolute h-full top-0" style="left: 15px"></div>
-      <ul class="list-none m-0 p-0">
-        <li class="mb-8">
-          <div class="flex items-center mb-1">
-            <div class="bg-green rounded-full h-8 w-8 shadow-lg"></div>
-            <div class="flex-1 ml-4 text-2xl font-bold">Consult</div>
-          </div>
-          <div class="bg-white text-blue rounded text-lg ml-12 p-6 shadow-lg">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolor voluptatem ab sit dolore, labore iusto suscipit illum quae ratione quaerat aspernatur eligendi expedita, aliquid culpa possimus distinctio in obcaecati?
-          </div>
-        </li>
-        <li class="mb-8">
-          <div class="flex items-center mb-1">
-            <div class="bg-green rounded-full h-8 w-8 shadow-lg"></div>
-            <!-- <div class="flex-1 ml-4 text-2xl font-bold">Prototype</div> -->
-            <section class="flex-1 bg-white text-blue rounded text-lg ml-4 p-6 shadow-lg">
-              <h1 class="text-2xl font-bold">Prototype</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vero eveniet omnis aut exercitationem in ipsa inventore quibusdam laboriosam quia sapiente corporis natus molestias nam quis, esse deleniti magni aspernatur?</p>
-            </section>
-          </div>
-        </li>
-        <li class="mb-8">
-          <div class="flex items-center mb-1">
-            <div class="bg-green rounded-full h-8 w-8 shadow-lg"></div>
-            <div class="flex-1 ml-4 text-2xl font-bold">Craft</div>
-          </div>
-          <div class="bg-white text-blue rounded text-lg font-bold ml-12 p-6 shadow-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda harum dolore autem incidunt nulla, neque rem aliquid praesentium debitis exercitationem, consequatur libero. Ratione ab magni repellat quod quidem ipsam dolorum.
-          </div>
-        </li>
-        <li class="mb-8">
-          <div class="flex items-center mb-1">
-            <div class="bg-green rounded-full h-8 w-8 shadow-lg"></div>
-            <div class="flex-1 ml-4 text-2xl font-bold">Maintain</div>
-          </div>
-          <div class="bg-white text-blue rounded text-lg ml-12 p-6 shadow-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione in ipsam culpa reiciendis expedita obcaecati provident, numquam nemo excepturi? Dolores, facilis ipsum nostrum maxime doloribus voluptate laboriosam similique aut. Repudiandae?
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Our Journey -->
-    <div class="flex flex-wrap">
-      <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow-lg px-8 py-8">
-        <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
-        <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
-        <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
-          length.
-          Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
-          and button below.</p>
-        <button
-          class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow-lg py-2 px-4 text-xl">Super
-          Button</button>
+  <!-- Triple columns -->
+  <section class="border-b py-8">
+    <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+      <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Title</h1>
+      <div class="w-full mb-4">
+        <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
       </div>
-      <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
-        <img src="square-image.png" alt="square">
+
+      <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+          <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <p class="w-full text-gray-600 text-xs md:text-sm px-6">xGETTING STARTED</p>
+            <div class="w-full font-bold text-xl text-gray-800 px-6">Lorem ipsum dolor sit amet.</div>
+            <p class="text-gray-800 text-base px-6 mb-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+            </p>
+          </a>
+        </div>
+        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+          <div class="flex items-center justify-start">
+            <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+          <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <p class="w-full text-gray-600 text-xs md:text-sm px-6">xGETTING STARTED</p>
+            <div class="w-full font-bold text-xl text-gray-800 px-6">Lorem ipsum dolor sit amet.</div>
+            <p class="text-gray-800 text-base px-6 mb-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+            </p>
+          </a>
+        </div>
+        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+          <div class="flex items-center justify-center">
+            <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+          <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <p class="w-full text-gray-600 text-xs md:text-sm px-6">xGETTING STARTED</p>
+            <div class="w-full font-bold text-xl text-gray-800 px-6">Lorem ipsum dolor sit amet.</div>
+            <p class="text-gray-800 text-base px-6 mb-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+            </p>
+          </a>
+        </div>
+        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+          <div class="flex items-center justify-end">
+            <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <br>
-    <br>
+  </section>
 
-    <div class="flex flex-wrap">
-      <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
-        <img src="square-image.png" alt="square">
+  <section class="border-b py-8">
+    <div class="container mx-auto">
+            <!-- Our Journey -->
+      <div class="flex flex-wrap">
+        <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow-lg px-8 py-8">
+          <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
+          <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
+          <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
+            length.
+            Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
+            and button below.</p>
+          <button
+            class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow-lg py-2 px-4 text-xl">Super
+            Button</button>
+        </div>
+        <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
+          <img src="square-image.png" alt="square">
+        </div>
       </div>
-      <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow-lg px-8 py-8">
-        <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
-        <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
-        <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
-          length.
-          Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
-          and button below.</p>
-        <button
-          class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow-lg py-2 px-4 text-xl">Super
-          Button</button>
+
+      <br>
+      <br>
+
+      <div class="flex flex-wrap">
+        <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
+          <img src="square-image.png" alt="square">
+        </div>
+        <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow-lg px-8 py-8">
+          <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
+          <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
+          <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
+            length.
+            Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
+            and button below.</p>
+          <button
+            class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow-lg py-2 px-4 text-xl">Super
+            Button</button>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="flex flex-wrap">
+        <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow-lg px-8 py-8">
+          <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
+          <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
+          <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
+            length.
+            Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
+            and button below.</p>
+          <button
+            class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow-lg py-2 px-4 text-xl">Super
+            Button</button>
+        </div>
+        <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
+          <img src="square-image.png" alt="square">
+        </div>
       </div>
     </div>
+  </section>
 
-    <br>
-    <br>
-
-    <div class="flex flex-wrap">
-      <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow-lg px-8 py-8">
-        <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
-        <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
-        <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
-          length.
-          Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
-          and button below.</p>
-        <button
-          class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow-lg py-2 px-4 text-xl">Super
-          Button</button>
-      </div>
-      <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
-        <img src="square-image.png" alt="square">
+  <section class="border-b py-8">
+    <div class="container mx-auto items-center flex flex-wrap">
+      <!-- Our Process Timeline -->
+      <div class="relative m-8">
+        <div class="border-r-2 border-green absolute h-full top-0" style="left: 11px"></div>
+        <ul class="list-none m-0 p-0">
+          <li class="mb-8">
+            <div class="flex items-center mb-1">
+              <div class="bg-green rounded-full h-6 w-6 shadow-lg"></div>
+              <div class="text-blue flex-1 ml-4 text-2xl font-bold">Consult</div>
+            </div>
+            <div class="bg-white text-blue rounded text-lg ml-10 p-6 shadow-lg">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolor voluptatem ab sit dolore, labore iusto suscipit illum quae ratione quaerat aspernatur eligendi expedita, aliquid culpa possimus distinctio in obcaecati?
+            </div>
+          </li>
+          <li class="mb-8">
+            <div class="flex items-center mb-1">
+              <div class="bg-green rounded-full h-6 w-6 shadow-lg"></div>
+              <div class="text-blue flex-1 ml-4 text-2xl font-bold">Prototype</div>
+            </div>
+            <div class="bg-white text-blue rounded text-lg ml-10 p-6 shadow-lg">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolor voluptatem ab sit dolore, labore iusto suscipit illum quae ratione quaerat aspernatur eligendi expedita, aliquid culpa possimus distinctio in obcaecati?
+            </div>
+          </li>
+          <li class="mb-8">
+            <div class="flex items-center mb-1">
+              <div class="bg-green rounded-full h-6 w-6 shadow-lg"></div>
+              <div class="text-blue flex-1 ml-4 text-2xl font-bold">Craft</div>
+            </div>
+            <div class="bg-white text-blue rounded text-lg ml-10 p-6 shadow-lg">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda harum dolore autem incidunt nulla, neque rem aliquid praesentium debitis exercitationem, consequatur libero. Ratione ab magni repellat quod quidem ipsam dolorum.
+            </div>
+          </li>
+          <li class="mb-8">
+            <div class="flex items-center mb-1">
+              <div class="bg-green rounded-full h-6 w-6 shadow-lg"></div>
+              <div class="text-blue flex-1 ml-4 text-2xl font-bold">Maintain</div>
+            </div>
+            <div class="bg-white text-blue rounded text-lg ml-10 p-6 shadow-lg">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione in ipsam culpa reiciendis expedita obcaecati provident, numquam nemo excepturi? Dolores, facilis ipsum nostrum maxime doloribus voluptate laboriosam similique aut. Repudiandae?
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-
-  </div>
+  </section>
 </body>
 
 <script src="bundle.js"></script>
