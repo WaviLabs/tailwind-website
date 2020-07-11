@@ -36,16 +36,22 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: './dist/indexT.html',
-        inject: true,
-        chunks: ['index'],
-        filename: './dist/indexT.html'
+      template: './dist/indexT.html',
+      inject: true,
+      chunks: ['index'],
+      filename: './dist/indexT.html'
     }),
     new HtmlWebpackPlugin({
-        template: './dist/index.html',
-        inject: true,
-        chunks: ['index'],
-        filename: './dist/index.html'
+      template: './dist/index.html',
+      inject: true,
+      chunks: ['index'],
+      filename: './dist/index.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './dist/blog.html',
+      inject: true,
+      chunks: ['index'],
+      filename: './dist/blog.html'
     })
   ]
 }
