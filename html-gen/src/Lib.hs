@@ -86,79 +86,6 @@ d_ = makeAttribute "d"
 path_ :: Applicative m => [Attribute] -> HtmlT m ()
 path_ = with (makeElementNoEnd "path")
 
-{-
-<nav class="fixed top-0 w-full z-10 bg-white p-6 shadow">
-  <!-- LARGE NAVBAR -->
-  <div class="w-full flex flex-wrap items-center justify-between">
-    <div class="lg:flex hidden text-lg">
-      <span>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
-          Blog
-        </a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
-          Services
-        </a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
-          Code
-        </a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white">
-          FAQ
-        </a>
-      </span>
-    </div>
-    <div class="lg:flex lg:items-center hidden">
-      <img src="logo.png" alt="logo" width="300" height="300" viewBox="0 0 250 250">
-    </div>
-    <div class="flex items-center lg:hidden">
-      <img src="logo.png" alt="logo" width="200" height="200" viewBox="0 0 250 250">
-    </div>
-    <div class="lg:flex lg:items-center hidden text-lg">
-      <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-8">
-        Button
-      </button>
-      <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-        Button
-      </button>
-    </div>
-    <div class="block items-center lg:hidden text-lg">
-      <button id="nav-toggle" class="flex flex-wrap items-center px-3 py-2 border rounded text-blue border-blue">
-        <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg>
-      </button>
-    </div>
-    <div id="nav-content" class="w-full items-center mt-2 z-20 hidden">
-      <ul class="list-reset flex flex-col justify-end flex-1 items-center">
-        <li>
-          <a class="inline-block py-2 px-4 text-black no-underline" href="#">
-            Blog
-          </a>
-        </li>
-        <li>
-          <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
-            Services
-          </a>
-        </li>
-        <li>
-          <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
-            Tools
-          </a>
-        </li>
-        <li>
-          <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
-            FAQ
-          </a>
-        </li>
-        <li>
-          <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-            Button
-          </button>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
--}
-
 -- | Navbar for the website. This will appear on
 -- pretty much every page.
 navbar :: Html ()
@@ -222,13 +149,6 @@ newtype BlogPostId = BlogPostId { unBlogPostId :: Int }
   deriving (Eq, Show)
 
 -- Isomorphic apps with Haskell and PureScript
-data BlogPost = BlogPost
-  { blogPostTitle :: Text
-  , blogPostImageSrc :: Text
-  , blogPostDescription :: Text
-  , blogPostDate :: Text
-  , blogPostTags :: [Text]
-  } deriving (Eq, Show)
 
 genBlogPostHtmlText :: BlogPostId -> IO Text
 genBlogPostHtmlText (BlogPostId bpId) = do
