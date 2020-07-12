@@ -19,6 +19,7 @@ import Lucid
   , html_
   , h1_
   , img_
+  , input_
   , li_
   , nav_
   , script_
@@ -38,7 +39,9 @@ import Lucid
   , lang_
   , meta_
   , name_
+  , placeholder_
   , src_
+  , type_
   , width_
   )
 import Lucid.Base (HtmlT, Term, makeAttribute, makeElement, makeElementNoEnd, termRaw, with)
@@ -52,7 +55,7 @@ import qualified Text.Pandoc.Highlighting as Highlighting
 someFunc :: IO ()
 someFunc = do
   Lucid.renderToFile "../dist/indexT.html" indexHtml
-  Lucid.renderToFile "../dist/blogT.html" $ blogHtml []
+  Lucid.renderToFile "../dist/blogT.html" blogHtml
 
 ----------------
 -- COMPONENTS --
@@ -73,6 +76,9 @@ wrapBody innerHtml = do
 
 mkClasses_ :: Text -> Attribute
 mkClasses_ = classes_ . Text.words
+
+aria_label_ :: Text -> Attribute
+aria_label_ = makeAttribute "aria-label"
 
 viewBox_ :: Text -> Attribute
 viewBox_ = makeAttribute "viewBox"
@@ -140,55 +146,95 @@ navbar = do
 -- PAGES --
 -----------
 
+----------------
+-- INDEX PAGE --
+----------------
 indexHtml :: Html ()
 indexHtml = do
   wrapBody $ do
     navbar
 
+
+---------------
+-- BLOG PAGE --
+---------------
+-- TODO: Isomorphic apps with Haskell and PureScript
 newtype BlogPostId = BlogPostId { unBlogPostId :: Int }
   deriving (Eq, Show)
 
--- Isomorphic apps with Haskell and PureScript
-
-genBlogPostHtmlText :: BlogPostId -> IO Text
-genBlogPostHtmlText (BlogPostId bpId) = do
+-- For generating the actual blog post that will be read.
+genBlogPostHtmlText :: BlogPostId -> IO ()
+genBlogPostHtmlText (BlogPostId bpid) = do
   template <- getBlogPostTemplate
-  markdown <- Text.readFile ("../blog/" <> (show bpId) <> ".md")
+  markdown <- Text.readFile ("../blog-md/" <> (show bpid) <> ".md")
   result <- Pandoc.runIO $ do
     ast <- Pandoc.readMarkdown Pandoc.def { Pandoc.readerExtensions = Pandoc.pandocExtensions } markdown
     Pandoc.writeHtml5String Pandoc.def { Pandoc.writerExtensions = Pandoc.pandocExtensions, Pandoc.writerTemplate = Just template, Pandoc.writerHighlightStyle = Just Highlighting.pygments } ast
   html <- Pandoc.handleError result
-  pure html
+  Text.writeFile ("../dist/blog-pages/" <> (show bpid) <> ".html") html
   where
     getBlogPostTemplate :: IO (Pandoc.Template Text)
     getBlogPostTemplate = do
-      template <- Text.readFile "./blogPostTemplate.html" :: IO Text
-      template' <- Pandoc.compileTemplate "./blogPostTemplate.html" template
+      template <- Text.readFile "../dist/blog-html/blogPostTemplate.html" :: IO Text
+      template' <- Pandoc.compileTemplate "../dist/blog-html/blogPostTemplate.html" template
       case template' of
-        Left _ -> error "Pandoc threw an error while trying to parse template."
+        Left _ -> error
+          "Pandoc threw an error while trying to parse template for blog post."
         Right template'' -> pure template''
 
-writeBlogPostHtmlText :: BlogPostId -> Text -> IO ()
-writeBlogPostHtmlText (BlogPostId bpId) html = do
-  Text.writeFile ("../dist/blog/" <> show bpId <> ".html") html
-
-blogHtml :: [BlogPost] -> Html ()
-blogHtml bps = do
-  wrapBody $ do
-    navbar
-    blogHeader
-    blogCardsGrid bps
+-- Generates the blog post page. Takes blog post ids; reads the corresponding
+-- markdown and generates blog post cards and the blog posts. Because we are using templates
+-- to generate cards and they are inside the html we have to split the blog card grid
+-- container into top and bottom and place the text generated from the card html text generator
+-- between. So blogHtml is going to be text instead of Html ().
+-- Inserting html with javascript maybe best bet. Doing pagination anyway.
+blogHtml:: Html ()
+blogHtml= wrapBody $ do
+  navbar
+  blogHeader
+  blogCardsGrid
+  blogPagination
+  -- TODO: footer
   where
     blogHeader :: Html ()
-    blogHeader = undefined
+    blogHeader =
+      div_ [mkClasses_ "container md:flex md:justify-between align-middle mx-auto pt-40 pb-10"] $ do
+        h1_ [mkClasses_ "text-4xl text-blue font-bold"] "Wavi Labs Archive"
+        div_ [mkClasses_ "flex items-center border-b border-teal-500 py-2"] $ do
+          input_
+            [ mkClasses_ "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            , type_ "text"
+            , placeholder_ "Search"
+            , aria_label_ "Search"
+            ]
+          button_
+            [ mkClasses_ "flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded"
+            , type_ "button"
+            ]
+            "Search"
 
-    blogCardsGrid :: [BlogPost] -> Html ()
-    blogCardsGrid bps = do
-      undefined
+    blogCardsGrid :: Html ()
+    blogCardsGrid = div_ [mkClasses_ "container flex px-auto mx-auto justify-center"] $
+      div_ [mkClasses_ "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"] ""
 
-    blogPostToCard :: BlogPost -> Html ()
-    blogPostToCard BlogPost{..} = do
-      undefined
+    blogPagination :: Html ()
+    blogPagination = undefined
 
-    renderBlogPostTags :: BlogPost -> Html ()
-    renderBlogPostTags (BlogPost _ _ _ _ tags) = undefined
+genBlogPostHtmlCard :: BlogPostId -> IO ()
+genBlogPostHtmlCard (BlogPostId bpid) = do
+  template <- getBlogPostCardTemplate
+  markdown <- Text.readFile ("../blog-md/" <> (show bpid) <> ".md")
+  result <- Pandoc.runIO $ do
+    ast <- Pandoc.readMarkdown Pandoc.def { Pandoc.readerExtensions = Pandoc.pandocExtensions } markdown
+    Pandoc.writeHtml5String Pandoc.def { Pandoc.writerExtensions = Pandoc.pandocExtensions, Pandoc.writerTemplate = Just template, Pandoc.writerHighlightStyle = Just Highlighting.pygments } ast
+  html <- Pandoc.handleError result
+  Text.writeFile ("../dist/blog-cards/" <> (show bpid) <> ".html") html
+  where
+    getBlogPostCardTemplate :: IO (Pandoc.Template Text)
+    getBlogPostCardTemplate = do
+      template <- Text.readFile "../pandoc-templates/blogPostCardTemplate.html" :: IO Text
+      template' <- Pandoc.compileTemplate "...pandoc-templates/blogPostCardTemplate.html" template
+      case template' of
+        Left _ -> error
+          "Pandoc threw an error while trying to parse template for blog post card."
+        Right template'' -> pure template''
