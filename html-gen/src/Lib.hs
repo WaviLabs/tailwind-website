@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards #-}
 
 module Lib
   ( someFunc
@@ -47,9 +48,11 @@ import qualified Lucid
 
 import Lucid.Base (HtmlT, Term, makeAttribute, makeElement, makeElementNoEnd, termRaw, with)
 
+
 someFunc :: IO ()
 someFunc = do
   Lucid.renderToFile "../dist/indexT.html" indexHtml
+  Lucid.renderToFile "../dist/blogT.html" $ blogHtml []
 
 ----------------
 -- COMPONENTS --
@@ -205,10 +208,43 @@ navbar = do
           li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
           li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
           li_ $ button_ [mkClasses_ "bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow"] "Button"
+
 -----------
 -- PAGES --
 -----------
 
 indexHtml :: Html ()
 indexHtml = do
-  wrapBody navbar
+  wrapBody $ do
+    navbar
+
+
+
+-- Isomorphic apps with Haskell and PureScript
+data BlogPost = BlogPost
+  { blogPostTitle :: Text
+  , blogPostDate :: Text
+  , blogPostContent :: Text
+  , blogPostTags :: [Text]
+  } deriving (Eq, Show)
+
+blogHtml :: [BlogPost] -> Html ()
+blogHtml bps = do
+  wrapBody $ do
+    navbar
+    blogHeader
+    blogCardsGrid bps
+  where
+    blogHeader :: Html ()
+    blogHeader = undefined
+
+    blogCardsGrid :: [BlogPost] -> Html ()
+    blogCardsGrid bps = do
+      undefined
+
+    blogPostToCard :: BlogPost -> Html ()
+    blogPostToCard BlogPost{..} = do
+      undefined
+
+    renderBlogPostTags :: BlogPost -> Html ()
+    renderBlogPostTags (BlogPost _ _ _ tags) = undefined
