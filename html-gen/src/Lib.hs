@@ -6,9 +6,6 @@ module Lib
   ) where
 
 import Data.Text (Text)
-import qualified Data.Text as Text
-  ( words
-  )
 import Lucid
   ( Attribute
   , Html
@@ -44,10 +41,13 @@ import Lucid
   , src_
   , width_
   )
-import qualified Lucid
-
 import Lucid.Base (HtmlT, Term, makeAttribute, makeElement, makeElementNoEnd, termRaw, with)
 
+import qualified Data.Text as Text
+import qualified Data.Text.IO as Text
+import qualified Lucid
+import qualified Text.Pandoc as Pandoc
+import qualified Text.Pandoc.Highlighting as Highlighting
 
 someFunc :: IO ()
 someFunc = do
@@ -218,15 +218,39 @@ indexHtml = do
   wrapBody $ do
     navbar
 
-
+newtype BlogPostId = BlogPostId { unBlogPostId :: Int }
+  deriving (Eq, Show)
 
 -- Isomorphic apps with Haskell and PureScript
 data BlogPost = BlogPost
   { blogPostTitle :: Text
+  , blogPostImageSrc :: Text
+  , blogPostDescription :: Text
   , blogPostDate :: Text
-  , blogPostContent :: Text
   , blogPostTags :: [Text]
   } deriving (Eq, Show)
+
+genBlogPostHtmlText :: BlogPostId -> IO Text
+genBlogPostHtmlText (BlogPostId bpId) = do
+  template <- getBlogPostTemplate
+  markdown <- Text.readFile ("../blog/" <> (show bpId) <> ".md")
+  result <- Pandoc.runIO $ do
+    ast <- Pandoc.readMarkdown Pandoc.def { Pandoc.readerExtensions = Pandoc.pandocExtensions } markdown
+    Pandoc.writeHtml5String Pandoc.def { Pandoc.writerExtensions = Pandoc.pandocExtensions, Pandoc.writerTemplate = Just template, Pandoc.writerHighlightStyle = Just Highlighting.pygments } ast
+  html <- Pandoc.handleError result
+  pure html
+  where
+    getBlogPostTemplate :: IO (Pandoc.Template Text)
+    getBlogPostTemplate = do
+      template <- Text.readFile "./blogPostTemplate.html" :: IO Text
+      template' <- Pandoc.compileTemplate "./blogPostTemplate.html" template
+      case template' of
+        Left _ -> error "Pandoc threw an error while trying to parse template."
+        Right template'' -> pure template''
+
+writeBlogPostHtmlText :: BlogPostId -> Text -> IO ()
+writeBlogPostHtmlText (BlogPostId bpId) html = do
+  Text.writeFile ("../dist/blog/" <> show bpId <> ".html") html
 
 blogHtml :: [BlogPost] -> Html ()
 blogHtml bps = do
@@ -247,4 +271,4 @@ blogHtml bps = do
       undefined
 
     renderBlogPostTags :: BlogPost -> Html ()
-    renderBlogPostTags (BlogPost _ _ _ tags) = undefined
+    renderBlogPostTags (BlogPost _ _ _ _ tags) = undefined

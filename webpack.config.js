@@ -52,6 +52,12 @@ module.exports = {
       inject: true,
       chunks: ['index'],
       filename: './dist/blog.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './dist/blogT.html',
+      inject: true,
+      chunks: ['index'],
+      filename: './dist/blogT.html'
     })
   ]
 }
