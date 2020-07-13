@@ -45,17 +45,26 @@ import Lucid
   , width_
   )
 import Lucid.Base (HtmlT, Term, makeAttribute, makeElement, makeElementNoEnd, termRaw, with)
+import Text.Pandoc (MetaValue(..), Pandoc(..))
 
+import qualified Data.Map as Map
 import qualified Data.Text as Text
 import qualified Data.Text.IO as Text
 import qualified Lucid
+import qualified System.Directory as Directory
 import qualified Text.Pandoc as Pandoc
 import qualified Text.Pandoc.Highlighting as Highlighting
 
 someFunc :: IO ()
 someFunc = do
+  -- Render index page
   Lucid.renderToFile "../dist/indexT.html" indexHtml
-  Lucid.renderToFile "../dist/blogT.html" blogHtml
+
+  -- Number of posts is important for pagination
+  numberOfMdFiles <- length <$> Directory.listDirectory "../blog-md/"
+  -- Render blog page
+  Lucid.renderToFile "../dist/blogT.html" $ blogHtml numberOfMdFiles
+
 
 ----------------
 -- COMPONENTS --
@@ -154,33 +163,9 @@ indexHtml = do
   wrapBody $ do
     navbar
 
-
 ---------------
 -- BLOG PAGE --
 ---------------
--- TODO: Isomorphic apps with Haskell and PureScript
-newtype BlogPostId = BlogPostId { unBlogPostId :: Int }
-  deriving (Eq, Show)
-
--- For generating the actual blog post that will be read.
-genBlogPostHtmlText :: BlogPostId -> IO ()
-genBlogPostHtmlText (BlogPostId bpid) = do
-  template <- getBlogPostTemplate
-  markdown <- Text.readFile ("../blog-md/" <> (show bpid) <> ".md")
-  result <- Pandoc.runIO $ do
-    ast <- Pandoc.readMarkdown Pandoc.def { Pandoc.readerExtensions = Pandoc.pandocExtensions } markdown
-    Pandoc.writeHtml5String Pandoc.def { Pandoc.writerExtensions = Pandoc.pandocExtensions, Pandoc.writerTemplate = Just template, Pandoc.writerHighlightStyle = Just Highlighting.pygments } ast
-  html <- Pandoc.handleError result
-  Text.writeFile ("../dist/blog-pages/" <> (show bpid) <> ".html") html
-  where
-    getBlogPostTemplate :: IO (Pandoc.Template Text)
-    getBlogPostTemplate = do
-      template <- Text.readFile "../dist/blog-html/blogPostTemplate.html" :: IO Text
-      template' <- Pandoc.compileTemplate "../dist/blog-html/blogPostTemplate.html" template
-      case template' of
-        Left _ -> error
-          "Pandoc threw an error while trying to parse template for blog post."
-        Right template'' -> pure template''
 
 -- Generates the blog post page. Takes blog post ids; reads the corresponding
 -- markdown and generates blog post cards and the blog posts. Because we are using templates
@@ -188,12 +173,12 @@ genBlogPostHtmlText (BlogPostId bpid) = do
 -- container into top and bottom and place the text generated from the card html text generator
 -- between. So blogHtml is going to be text instead of Html ().
 -- Inserting html with javascript maybe best bet. Doing pagination anyway.
-blogHtml:: Html ()
-blogHtml= wrapBody $ do
+blogHtml:: Int -> Html ()
+blogHtml numOfPosts = wrapBody $ do
   navbar
   blogHeader
   blogCardsGrid
-  blogPagination
+  blogPagination numOfPosts
   -- TODO: footer
   where
     blogHeader :: Html ()
@@ -217,8 +202,82 @@ blogHtml= wrapBody $ do
     blogCardsGrid = div_ [mkClasses_ "container flex px-auto mx-auto justify-center"] $
       div_ [mkClasses_ "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"] ""
 
-    blogPagination :: Html ()
-    blogPagination = undefined
+    blogPagination :: Int -> Html ()
+    blogPagination numOfPosts = undefined
+      where
+        numOfPages =
+          if numOfPosts `mod` 12 == 0
+          then numOfPosts `div` 12
+          else (numOfPosts `div` 12) + 1
+
+-- TODO: Isomorphic apps with Haskell and PureScript
+newtype BlogPostId = BlogPostId { unBlogPostId :: Int }
+  deriving (Eq, Show)
+
+-- For generating the actual blog post that will be read.
+genBlogPostHtmlText :: BlogPostId -> IO ()
+genBlogPostHtmlText (BlogPostId bpid) = do
+  -- Get markdown
+  markdown <- Text.readFile ("../blog-md/" <> (show bpid) <> ".md")
+  -- We want the meta data
+  pandoc@(Pandoc meta _) <- do
+    eitherPandoc <- Pandoc.runIO $
+      Pandoc.readMarkdown
+      Pandoc.def
+      { Pandoc.readerExtensions = Pandoc.pandocExtensions }
+      markdown
+    Pandoc.handleError eitherPandoc
+  -- Get the template for blog posts
+  -- It uses meta variables in markdown block at top
+  template <- getBlogPostTemplate
+
+  -- Transform pandoc AST into HTML5 text
+  eitherHtml <- Pandoc.runIO $ Pandoc.writeHtml5String
+    Pandoc.def
+    { Pandoc.writerExtensions = Pandoc.pandocExtensions
+    , Pandoc.writerTemplate = Just template
+    , Pandoc.writerHighlightStyle = Just Highlighting.pygments
+    }
+    pandoc
+
+  -- Handle possible error
+  html <- Pandoc.handleError eitherHtml
+
+  -- One write to blog-pages
+  Text.writeFile ("../dist/blog-pages/" <> (show bpid) <> ".html") html
+
+  -- Now we use meta variable defined above to access meta information
+  -- for getting tags
+  let metaMap = Pandoc.unMeta meta
+      maybeTags = Map.lookup "tags" metaMap
+      -- Prob better as a maybeTagsText
+      tagsText = case maybeTags of
+          Just (MetaList metaValues) -> map (\(MetaString s) -> s) metaValues
+          Just _ -> error "The tags field was found, but it is not a list as expected."
+          Nothing -> error "The markdown I parsed didn't have the tags field."
+
+  -- Another write to the corresponding tag folders. A post could be in many folders.
+  mapM_
+    (\tagText ->
+        Text.writeFile
+          ("../dist/blog-pages/"
+            <> (Text.unpack tagText)
+            <> "/"
+            <> (show bpid)
+            <> ".html"
+          )
+          html
+    )
+    tagsText
+  where
+    getBlogPostTemplate :: IO (Pandoc.Template Text)
+    getBlogPostTemplate = do
+      template <- Text.readFile "../dist/blog-html/blogPostTemplate.html" :: IO Text
+      template' <- Pandoc.compileTemplate "../dist/blog-html/blogPostTemplate.html" template
+      case template' of
+        Left _ -> error
+          "Pandoc threw an error while trying to parse template for blog post."
+        Right template'' -> pure template''
 
 genBlogPostHtmlCard :: BlogPostId -> IO ()
 genBlogPostHtmlCard (BlogPostId bpid) = do
