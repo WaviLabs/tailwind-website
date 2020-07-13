@@ -167,16 +167,13 @@ indexHtml = do
 -- BLOG PAGE --
 ---------------
 
--- Generates the blog post page. Takes blog post ids; reads the corresponding
--- markdown and generates blog post cards and the blog posts. Because we are using templates
--- to generate cards and they are inside the html we have to split the blog card grid
--- container into top and bottom and place the text generated from the card html text generator
--- between. So blogHtml is going to be text instead of Html ().
 -- Inserting html with javascript maybe best bet. Doing pagination anyway.
 blogHtml:: Int -> Html ()
 blogHtml numOfPosts = wrapBody $ do
   navbar
   blogHeader
+  -- The actual cards html will be inserted into the grid
+  -- via javascript
   blogCardsGrid
   blogPagination numOfPosts
   -- TODO: footer
