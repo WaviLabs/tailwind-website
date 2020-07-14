@@ -1,10 +1,17 @@
 import "./styles.css";
 import "./main.js";
 
+import $ from 'jquery';
+
 //Pagination for blog
-const mediumScreen = 690;
 var pageIndex = 0
 var numberOfPages = 0
+var blogCardsGrid = document.getElementById("blog-cards-grid");
+var paginationDiv = document.getElementById("page-numbers");
+document.onload($("#blog-cards-grid").load("./blog-pages/1.html"));
+// get value for number of pages from the pagination bar html. The last
+// button contains the numberOfPages. based off of the haskell generated html
+// Not true for small pagination though
 var prevButton = document.getElementById("prev-page");
 var nextButton = document.getElementById("next-page");
 
@@ -13,9 +20,6 @@ nextButton.addEventListener("click", nextButtonAction);
 
 function prevButtonAction () {
   if (pageIndex > 0) {
-    var blogCardsGrid = document.getElementById("blog-cards-grid");
-    var paginationDiv = document.getElementById("page-numbers");
-
     // IF the the viewport is small then there's only one page number
     // To change numbers when the viewport is small we just change the number
     // because there's only one slot.
@@ -39,7 +43,7 @@ function prevButtonAction () {
           .classList
           .add(["bg-blue","text-white"])
 
-          if (numberOfPages)
+          if (numberOfPages) {}
         }
         // How will scrolling work?
         // Let's say we have 1 ... 2 3 4 ... 6
@@ -89,10 +93,7 @@ function prevButtonAction () {
   }
 }
 
-function prevButtonAction () {
-  var blogCardsGrid = document.getElementById("blog-cards-grid");
-  var paginationDiv = document.getElementById("page-numbers");
-
+function nextButtonAction () {
   if (pageIndex > 0) {
     // remove blue-bg from current page number
     paginationDiv

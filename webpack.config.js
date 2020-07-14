@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'); //to access built-in plugins
 
 module.exports = {
   entry: {
@@ -61,6 +62,10 @@ module.exports = {
       inject: true,
       chunks: ['index'],
       filename: './dist/blogT.html'
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
     })
   ]
 }
