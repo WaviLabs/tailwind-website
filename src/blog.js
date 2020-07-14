@@ -8,7 +8,7 @@ $("#blog-cards-grid").load("./blog-pages/1.html")
 
 var pagination = document.getElementById("pagination");
 var pageIndex = 0
-var numberOfPages = Number.parseInt(pagination.lastChild.previousSibling.innerHTML);
+var numberOfPages = Number.parseInt(pagination.lastChild.innerHTML);
 // get value for number of pages from the pagination bar html. The last
 // button contains the numberOfPages. based off of the haskell generated html
 // Not true for small pagination though
@@ -39,12 +39,12 @@ function nextButtonAction () {
       if (numberOfPages > 5) {
         console.log("There are more than five pages.");
 
-        firstPageButton = pagination.firstChild.nextSibling;
-        lastPageButton = pagination.lastChild.previousSibling;
+        var firstPageButton = pagination.firstChild;
+        var lastPageButton = pagination.lastChild;
 
-        middleFirstPageButton = pagination.children[3];
-        middleMiddlePageButton = middleFirstPageButton.nextSibling;
-        middleLastPageButton = middleMiddlePageButton.nextSibling;
+        var middleFirstPageButton = pagination.children[2];
+        var middleMiddlePageButton = middleFirstPageButton.nextSibling;
+        var middleLastPageButton = middleMiddlePageButton.nextSibling;
 
         if (pageIndex === 0) {
           console.log("You were on the first page.");
@@ -107,7 +107,6 @@ function prevButtonAction () {
   if (pageIndex === numberOfPages - 1) {
     console.log("You are on the last page...");
   } else {
-    pageIndex++;
     console.log(pageIndex);
     $("#blog-cards-grid").load("./blog-pages/" + (pageIndex + 1) + ".html");
     if (window.matchMedia("screen and (min-width: 768px)").matches) {
@@ -177,5 +176,6 @@ function prevButtonAction () {
       console.log("You have a small screen!");
       pagination.children[1].innerHTML = pagination.children[1].innerHTML + 1;
     }
+    pageIndex++;
   }
 }

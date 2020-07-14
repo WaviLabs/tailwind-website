@@ -229,82 +229,83 @@ blogHtml numOfPosts = wrapBody "blog" $ do
     blogCardsGrid = div_ [mkClasses_ "container flex px-auto mx-auto justify-center"] $
       div_ [id_ "blog-cards-grid", mkClasses_ "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"] ""
 
-    blogPagination :: Int -> Html ()
-    blogPagination numberOfPosts =
-      div_ [mkClasses_ "flex flex-col items-center my-12"] $
-        div_ [id_ "pagination", mkClasses_ "flex text-gray-700"] $ do
-          button_ [id_ "prev-page", mkClasses_ "h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"] $
-            svg_ [ xmlns_ "http://www.w3.org/2000/svg"
-                 , width_ "100%"
-                 , height_ "100%"
-                 , fill_ "none"
-                 , viewBox_ "0 0 24 24"
-                 , stroke_ "currentColor"
-                 , stroke_width_ "2"
-                 , stroke_linecap_ "round"
-                 , stroke_linejoin_ "round"
-                 , mkClasses_ "feather feather-chevron-left w-6 h-6"
-                 ] $ polyline_ [points_ "15 18 9 12 15 6"]
-            ""
-          if numberOfPages > 5
-          then do
-            let middle = numberOfPages `div` 2
-            makeActivePageButton 1
-            makePageButtonDots
-            makePageButton (middle - 1)
-            makePageButton middle
-            makePageButton (middle + 1)
-            makePageButtonDots
-            makeActivePageButton numberOfPages
-          else makePageButtons numberOfPages
-          button_ [id_ "next-page", mkClasses_ "h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"] $
-            svg_ [xmlns_ "http://www.w3.org/2000/svg"
-                 , width_ "100%"
-                 , height_ "100%"
-                 , fill_ "none"
-                 , viewBox_ "0 0 24 24"
-                 , stroke_ "currentColor"
-                 -- stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left w-6 h-6"
-                 , stroke_width_ "2"
-                 , stroke_linecap_ "round"
-                 , stroke_linejoin_ "round"
-                 , mkClasses_ "feather feather-chevron-left w-6 h-6"
-                 ] $ polyline_ [points_ "9 18 15 12 9 6"]
-            ""
-      where
-        numberOfPages =
-          if numberOfPosts `mod` 12 == 0
-          then numberOfPosts `div` 12
-          else (numberOfPosts `div` 12) + 1
-
-        makePageButtons :: Int -> Html ()
-        makePageButtons pages = do
+blogPagination :: Int -> Html ()
+blogPagination numberOfPosts =
+  div_ [mkClasses_ "flex flex-col items-center my-12"] $
+    div_ [mkClasses_ "flex text-gray-700"] $ do
+      button_ [id_ "prev-page", mkClasses_ "h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"] $
+        svg_ [ xmlns_ "http://www.w3.org/2000/svg"
+              , width_ "100%"
+              , height_ "100%"
+              , fill_ "none"
+              , viewBox_ "0 0 24 24"
+              , stroke_ "currentColor"
+              , stroke_width_ "2"
+              , stroke_linecap_ "round"
+              , stroke_linejoin_ "round"
+              , mkClasses_ "feather feather-chevron-left w-6 h-6"
+              ] $ polyline_ [points_ "15 18 9 12 15 6"]
+        ""
+      div_ [id_ "pagination", mkClasses_ "flex h-12 font-medium rounded-full bg-gray-200"] $
+        if numberOfPages > 5
+        then do
+          let middle = numberOfPages `div` 2
           makeActivePageButton 1
-          if pages > 1
-          then mapM_ makePageButton [2..pages]
-          else pure ()
+          makePageButtonDots
+          makePageButton (middle - 1)
+          makePageButton middle
+          makePageButton (middle + 1)
+          makePageButtonDots
+          makePageButton numberOfPages
+        else makePageButtons numberOfPages
+      button_ [id_ "next-page", mkClasses_ "h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"] $
+        svg_ [xmlns_ "http://www.w3.org/2000/svg"
+              , width_ "100%"
+              , height_ "100%"
+              , fill_ "none"
+              , viewBox_ "0 0 24 24"
+              , stroke_ "currentColor"
+              -- stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left w-6 h-6"
+              , stroke_width_ "2"
+              , stroke_linecap_ "round"
+              , stroke_linejoin_ "round"
+              , mkClasses_ "feather feather-chevron-left w-6 h-6"
+              ] $ polyline_ [points_ "9 18 15 12 9 6"]
+        ""
+  where
+    numberOfPages =
+      if numberOfPosts `mod` 12 == 0
+      then numberOfPosts `div` 12
+      else (numberOfPosts `div` 12) + 1
 
-        makeActivePageButton :: Int -> Html ()
-        makeActivePageButton page = do
-          div_
-            [ href_ $ "./blog-pages/blog-page-" <> (Text.pack . show $ page) <> ".html"
-            , mkClasses_ "w-12 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full bg-blue text-white"
-            ]
-            (Lucid.toHtml . show $ page)
+    makePageButtons :: Int -> Html ()
+    makePageButtons pages = do
+      makeActivePageButton 1
+      if pages > 1
+      then mapM_ makePageButton [2..pages]
+      else pure ()
 
-        makePageButton :: Int -> Html ()
-        makePageButton page =
-          div_
-            [ href_ $ "./blog-pages/blog-page-" <> (Text.pack . show $ page) <> ".html"
-            , mkClasses_ "w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full"
-            ]
-            (Lucid.toHtml . show $ page)
+    makeActivePageButton :: Int -> Html ()
+    makeActivePageButton page = do
+      div_
+        [ href_ $ "./blog-pages/blog-page-" <> (Text.pack . show $ page) <> ".html"
+        , mkClasses_ "w-12 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full bg-blue text-white"
+        ]
+        (Lucid.toHtml . show $ page)
 
-        makePageButtonDots :: Html ()
-        makePageButtonDots =
-          div_
-            [mkClasses_ "w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full"]
-            "..."
+    makePageButton :: Int -> Html ()
+    makePageButton page =
+      div_
+        [ href_ $ "./blog-pages/blog-page-" <> (Text.pack . show $ page) <> ".html"
+        , mkClasses_ "w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full"
+        ]
+        (Lucid.toHtml . show $ page)
+
+    makePageButtonDots :: Html ()
+    makePageButtonDots =
+      div_
+        [mkClasses_ "w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full"]
+        "..."
 
 -- TODO: Isomorphic apps with Haskell and PureScript
 newtype BlogPostId = BlogPostId { unBlogPostId :: Int }

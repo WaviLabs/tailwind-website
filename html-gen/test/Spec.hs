@@ -59,6 +59,7 @@ writeMarkdown :: Int -> Markdown -> IO ()
 writeMarkdown id Markdown{..} = do
   let path = "../blog-md/" <> show id <> ".md"
 
+  Text.writeFile path $ "---\n"
   Text.appendFile path $ "id: " <> tShow id <> "\n"
   Text.appendFile path $ "title: " <> markdownTitle <> "\n"
   Text.appendFile path $ "description: " <> markdownDescription <> "\n"
@@ -72,11 +73,12 @@ writeMarkdown id Markdown{..} = do
     <> tShow markdownYear
     <> "\n"
   Text.appendFile path $
-    "tags:\n" <> (Text.concat $ map (\t -> "  -" <> t <> "\n") markdownTags)
+    "tags:\n" <> (Text.concat $ map (\t -> "  - " <> t <> "\n") markdownTags)
+  Text.appendFile path $ "---\n"
 
 main :: IO ()
 main = do
-  loop 50 64
+  loop 1 66
   where
     loop start end =
       if start == end

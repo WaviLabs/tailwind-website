@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2b43020e23d748bb532549af99392aa94c4cba9d1152a5f2fbc290eb6eb71e30
+-- hash: c3a81a0b7bca7d58b220128d7400ca6b4a6a65932307de2e82ae7dd623cb7f1e
 
 name:           html-gen
 version:        0.1.0.0
@@ -28,7 +28,6 @@ source-repository head
 library
   exposed-modules:
       Lib
-      RandomMd
   other-modules:
       Paths_html_gen
   hs-source-dirs:
