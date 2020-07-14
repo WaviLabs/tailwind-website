@@ -4,11 +4,11 @@ import "./main.js";
 import $ from 'jquery';
 
 //Pagination for blog
+$("#blog-cards-grid").load("./blog-pages/1.html")
+
+var pagination = document.getElementById("pagination");
 var pageIndex = 0
-var numberOfPages = 0
-var blogCardsGrid = document.getElementById("blog-cards-grid");
-var paginationDiv = document.getElementById("page-numbers");
-document.onload($("#blog-cards-grid").load("./blog-pages/1.html"));
+var numberOfPages = Number.parseInt(pagination.lastChild.previousSibling.innerHTML);
 // get value for number of pages from the pagination bar html. The last
 // button contains the numberOfPages. based off of the haskell generated html
 // Not true for small pagination though
@@ -18,101 +18,164 @@ var nextButton = document.getElementById("next-page");
 prevButton.addEventListener("click", prevButtonAction);
 nextButton.addEventListener("click", nextButtonAction);
 
-function prevButtonAction () {
-  if (pageIndex > 0) {
-    // IF the the viewport is small then there's only one page number
-    // To change numbers when the viewport is small we just change the number
-    // because there's only one slot.
-    if (window.matchMedia("screen and (min-width: 768px)").matches) {
-    // When the viewport is big it's a bit more difficult because the numbers have to "scroll"
-    // back and forth. Wait, the numbers only have to scroll back and forth if there are more than
-    // 5 pages. So six pages is where the big ellipsed navbar is needed and scrolling is need to
-    // navigate that.
-      if (numberOfPages > 5) {
-        // IF on the last page
-        if (pageIndex === numberOfPages - 1) {
-          paginationDiv
-          .lastChild
-          .classList
-          .remove(["bg-blue","text-white"]);
+console.log();
 
-          paginationDiv
-          .lastChild
-          .previousSibling
-          .previousSibling
-          .classList
-          .add(["bg-blue","text-white"])
-
-          if (numberOfPages) {}
-        }
-        // How will scrolling work?
-        // Let's say we have 1 ... 2 3 4 ... 6
-        // Only the middle need to scroll! The first and last pages stay the same
-        // so it's like a moving window of 3 values.
-        // The user hits next: 1 ... 3 4 5 ... 6
-        // Scrolling needed here.
-
-      } else {
-        paginationDiv
-        .children[pageIndex]
-        .classList
-        .remove(["bg-blue","text-white"]);
-
-        pageIndex--;
-
-        //Simple scrolling here.
-        paginationDiv
-        .children[pageIndex]
-        .classList
-        .add(["bg-blue","text-white"]);
-      }
-    } else {
-      // Here is number change for small navbar. Just change the number inside the single slot.
-      // decrement page index
-      pageIndex--;
-      paginationDiv.lastChild.innerHTML = pageIndex + 1;
-    }
-
-
-    // remove blue-bg from current page number
-    paginationDiv
-    .children[pageIndex]
-    .classList
-    .remove(["bg-blue","text-white"]);
-
-    // add blue-bg to prev page number
-    paginationDiv
-    .children[pageIndex]
-    .classList
-    .add(["bg-blue","text-white"])
-
-    var reader = new FileReader();
-    blogCardsGrid.innerHTML =
-      reader
-      .readAsText("./blog-pages/" + Number.toString(pageIndex + 1) + ".html");
-  }
+function shiftPaginationForward () {
+  pagination.children[2].innerHTML = String.toString(Integer.parseInt(pagination.children[2].innerHTML) + 1);
+  pagination.children[3].innerHTML = String.toString(Integer.parseInt(pagination.children[3].innerHTML) + 1);
+  pagination.children[4].innerHTML = String.toString(Integer.parseInt(pagination.children[4].innerHTML) + 1);
 }
 
 function nextButtonAction () {
-  if (pageIndex > 0) {
-    // remove blue-bg from current page number
-    paginationDiv
-    .children[pageIndex]
-    .classList
-    .remove(["bg-blue","text-white"]);
-
-    // increment page index
+  if (pageIndex === numberOfPages - 1) {
+    console.log("You are on the last page...");
+  } else {
     pageIndex++;
+    console.log(pageIndex);
+    $("#blog-cards-grid").load("./blog-pages/" + (pageIndex + 1) + ".html");
+    if (window.matchMedia("screen and (min-width: 768px)").matches) {
+      console.log("You have a large screen!");
 
-    // add blue-bg to prev page number
-    paginationDiv
-    .children[pageIndex]
-    .classList
-    .add(["bg-blue","text-white"])
+      if (numberOfPages > 5) {
+        console.log("There are more than five pages.");
 
-    var reader = new FileReader();
-    blogCardsGrid.innerHTML =
-      reader
-      .readAsText("./blog-pages/" + Number.toString(pageIndex + 1) + ".html");
+        firstPageButton = pagination.firstChild.nextSibling;
+        lastPageButton = pagination.lastChild.previousSibling;
+
+        middleFirstPageButton = pagination.children[3];
+        middleMiddlePageButton = middleFirstPageButton.nextSibling;
+        middleLastPageButton = middleMiddlePageButton.nextSibling;
+
+        if (pageIndex === 0) {
+          console.log("You were on the first page.");
+
+          firstPageButton
+          .classList
+          .remove("bg-blue","text-white");
+
+
+
+          middleFirstPageButton
+          .classList
+          .add("bg-blue","text-white");
+        } else if (pageIndex === numberOfPages - 2) {
+          console.log("You were on the second to last page.");
+
+          middleLastPageButton
+          .classList
+          .remove("bg-blue","text-white");
+
+
+
+          lastPageButton
+          .classList
+          .add("bg-blue","text-white");
+        } else if (pageIndex === Number.parseInt(middleLastPageButton.innerHTML) - 1) {
+          console.log("The page you were looking at was in the middle last page button");
+
+
+          // NO need to add or remove classes. Just change inner numbers
+          shiftPaginationForward();
+        } else {
+          console.log("You were on a normal pagination button");
+
+          var activePaginationButton = pagination.querySelector(".bg-blue");
+
+          activePaginationButton.classList.remove("bg-blue","text-white");
+
+          activePaginationButton.nextSibling.classList.add("bg-blue","text-white");
+        }
+      } else {
+        console.log("There are less than five pages.");
+
+        var activePaginationButton = pagination.querySelector(".bg-blue");
+
+        console.log(activePaginationButton);
+
+        activePaginationButton.classList.remove("bg-blue", "text-white");
+        console.log(activePaginationButton);
+        activePaginationButton.nextSibling.classList.add("bg-blue", "text-white");
+      }
+    } else {
+      console.log("You have a small screen!");
+      pagination.children[1].innerHTML = pagination.children[1].innerHTML + 1;
+    }
+  }
+}
+
+function prevButtonAction () {
+  if (pageIndex === numberOfPages - 1) {
+    console.log("You are on the last page...");
+  } else {
+    pageIndex++;
+    console.log(pageIndex);
+    $("#blog-cards-grid").load("./blog-pages/" + (pageIndex + 1) + ".html");
+    if (window.matchMedia("screen and (min-width: 768px)").matches) {
+      console.log("You have a large screen!");
+
+      if (numberOfPages > 5) {
+        console.log("There are more than five pages.");
+
+        firstPageButton = pagination.firstChild.nextSibling;
+        lastPageButton = pagination.lastChild.previousSibling;
+
+        middleFirstPageButton = pagination.children[3];
+        middleMiddlePageButton = middleFirstPageButton.nextSibling;
+        middleLastPageButton = middleMiddlePageButton.nextSibling;
+
+        if (pageIndex === 0) {
+          console.log("You were on the first page.");
+
+          firstPageButton
+          .classList
+          .remove("bg-blue","text-white");
+
+
+
+          middleFirstPageButton
+          .classList
+          .add("bg-blue","text-white");
+        } else if (pageIndex === numberOfPages - 2) {
+          console.log("You were on the second to last page.");
+
+          middleLastPageButton
+          .classList
+          .remove("bg-blue","text-white");
+
+
+
+          lastPageButton
+          .classList
+          .add("bg-blue","text-white");
+        } else if (pageIndex === Number.parseInt(middleLastPageButton.innerHTML) - 1) {
+          console.log("The page you were looking at was in the middle last page button");
+
+
+          // NO need to add or remove classes. Just change inner numbers
+          shiftPaginationForward();
+        } else {
+          console.log("You were on a normal pagination button");
+
+          var activePaginationButton = pagination.querySelector(".bg-blue");
+
+          activePaginationButton.classList.remove("bg-blue","text-white");
+
+          activePaginationButton.nextSibling.classList.add("bg-blue","text-white");
+        }
+      } else {
+        console.log("There are less than five pages.");
+
+        var activePaginationButton = pagination.querySelector(".bg-blue");
+
+        console.log(activePaginationButton);
+
+        activePaginationButton.classList.remove("bg-blue", "text-white");
+        console.log(activePaginationButton);
+        activePaginationButton.nextSibling.classList.add("bg-blue", "text-white");
+      }
+    } else {
+      console.log("You have a small screen!");
+      pagination.children[1].innerHTML = pagination.children[1].innerHTML + 1;
+    }
   }
 }

@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
-
+-- TODO: Write an markdown generator to test blog gen
 module Lib
   ( someFunc
   ) where
@@ -232,7 +232,7 @@ blogHtml numOfPosts = wrapBody "blog" $ do
     blogPagination :: Int -> Html ()
     blogPagination numberOfPosts =
       div_ [mkClasses_ "flex flex-col items-center my-12"] $
-        div_ [mkClasses_ "flex text-gray-700"] $ do
+        div_ [id_ "pagination", mkClasses_ "flex text-gray-700"] $ do
           button_ [id_ "prev-page", mkClasses_ "h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"] $
             svg_ [ xmlns_ "http://www.w3.org/2000/svg"
                  , width_ "100%"
@@ -246,7 +246,7 @@ blogHtml numOfPosts = wrapBody "blog" $ do
                  , mkClasses_ "feather feather-chevron-left w-6 h-6"
                  ] $ polyline_ [points_ "15 18 9 12 15 6"]
             ""
-          if numberOfPosts > 5
+          if numberOfPages > 5
           then do
             let middle = numberOfPages `div` 2
             makeActivePageButton 1
