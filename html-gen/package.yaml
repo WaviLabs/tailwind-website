@@ -50,4 +50,6 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - html-gen
+    - directory
+    - QuickCheck
+    - text
