@@ -3,6 +3,12 @@ import "./main.js";
 
 import $ from 'jquery';
 
+// TODO: Take user to top of page after clicking on next button
+// TODO: Make screen vertical size constant so it doesn't jump after
+//       each press
+// TODO: Add page button for small screen size
+// TODO: Make buttons link to their own pages
+
 //Pagination for blog
 $("#blog-cards-grid").load("./blog-pages/1.html")
 
@@ -21,9 +27,15 @@ nextButton.addEventListener("click", nextButtonAction);
 console.log();
 
 function shiftPaginationForward () {
-  pagination.children[2].innerHTML = String.toString(Integer.parseInt(pagination.children[2].innerHTML) + 1);
-  pagination.children[3].innerHTML = String.toString(Integer.parseInt(pagination.children[3].innerHTML) + 1);
-  pagination.children[4].innerHTML = String.toString(Integer.parseInt(pagination.children[4].innerHTML) + 1);
+  pagination.children[2].innerHTML = parseInt(pagination.children[2].innerHTML) + 1
+  pagination.children[3].innerHTML = parseInt(pagination.children[3].innerHTML) + 1
+  pagination.children[4].innerHTML = parseInt(pagination.children[4].innerHTML) + 1
+}
+
+function shiftPaginationBackward () {
+  pagination.children[2].innerHTML = parseInt(pagination.children[2].innerHTML) - 1
+  pagination.children[3].innerHTML = parseInt(pagination.children[3].innerHTML) - 1
+  pagination.children[4].innerHTML = parseInt(pagination.children[4].innerHTML) - 1
 }
 
 function nextButtonAction () {
@@ -46,31 +58,27 @@ function nextButtonAction () {
         var middleMiddlePageButton = middleFirstPageButton.nextSibling;
         var middleLastPageButton = middleMiddlePageButton.nextSibling;
 
-        if (pageIndex === 0) {
+        if (pageIndex === 1) {
           console.log("You were on the first page.");
 
           firstPageButton
           .classList
           .remove("bg-blue","text-white");
 
-
-
           middleFirstPageButton
           .classList
           .add("bg-blue","text-white");
-        } else if (pageIndex === numberOfPages - 2) {
+        } else if (pageIndex === numberOfPages - 1) {
           console.log("You were on the second to last page.");
 
           middleLastPageButton
           .classList
           .remove("bg-blue","text-white");
 
-
-
           lastPageButton
           .classList
           .add("bg-blue","text-white");
-        } else if (pageIndex === Number.parseInt(middleLastPageButton.innerHTML) - 1) {
+        } else if (pageIndex === Number.parseInt(middleLastPageButton.innerHTML)) {
           console.log("The page you were looking at was in the middle last page button");
 
 
@@ -104,9 +112,10 @@ function nextButtonAction () {
 }
 
 function prevButtonAction () {
-  if (pageIndex === numberOfPages - 1) {
-    console.log("You are on the last page...");
+  if (pageIndex === 0) {
+    console.log("You are on the first page...");
   } else {
+    pageIndex--;
     console.log(pageIndex);
     $("#blog-cards-grid").load("./blog-pages/" + (pageIndex + 1) + ".html");
     if (window.matchMedia("screen and (min-width: 768px)").matches) {
@@ -115,43 +124,39 @@ function prevButtonAction () {
       if (numberOfPages > 5) {
         console.log("There are more than five pages.");
 
-        firstPageButton = pagination.firstChild.nextSibling;
-        lastPageButton = pagination.lastChild.previousSibling;
+        var firstPageButton = pagination.firstChild;
+        var lastPageButton = pagination.lastChild;
 
-        middleFirstPageButton = pagination.children[3];
-        middleMiddlePageButton = middleFirstPageButton.nextSibling;
-        middleLastPageButton = middleMiddlePageButton.nextSibling;
+        var middleFirstPageButton = pagination.children[2];
+        var middleMiddlePageButton = middleFirstPageButton.nextSibling;
+        var middleLastPageButton = middleMiddlePageButton.nextSibling;
 
-        if (pageIndex === 0) {
-          console.log("You were on the first page.");
-
-          firstPageButton
-          .classList
-          .remove("bg-blue","text-white");
-
-
-
-          middleFirstPageButton
-          .classList
-          .add("bg-blue","text-white");
-        } else if (pageIndex === numberOfPages - 2) {
-          console.log("You were on the second to last page.");
-
-          middleLastPageButton
-          .classList
-          .remove("bg-blue","text-white");
-
-
+        if (pageIndex === numberOfPages - 2) {
+          console.log("You were on the last page.");
 
           lastPageButton
           .classList
+          .remove("bg-blue","text-white");
+
+          middleLastPageButton
+          .classList
           .add("bg-blue","text-white");
-        } else if (pageIndex === Number.parseInt(middleLastPageButton.innerHTML) - 1) {
-          console.log("The page you were looking at was in the middle last page button");
+        } else if (pageIndex === 0) {
+          console.log("You were on the second page.");
+
+          middleFirstPageButton
+          .classList
+          .remove("bg-blue","text-white");
+
+          firstPageButton
+          .classList
+          .add("bg-blue","text-white");
+        } else if (pageIndex === Number.parseInt(middleFirstPageButton.innerHTML) - 2) {
+          console.log("The page you were looking at was in the middle first page button");
 
 
           // NO need to add or remove classes. Just change inner numbers
-          shiftPaginationForward();
+          shiftPaginationBackward();
         } else {
           console.log("You were on a normal pagination button");
 
@@ -159,7 +164,7 @@ function prevButtonAction () {
 
           activePaginationButton.classList.remove("bg-blue","text-white");
 
-          activePaginationButton.nextSibling.classList.add("bg-blue","text-white");
+          activePaginationButton.previousSibling.classList.add("bg-blue","text-white");
         }
       } else {
         console.log("There are less than five pages.");
@@ -170,12 +175,11 @@ function prevButtonAction () {
 
         activePaginationButton.classList.remove("bg-blue", "text-white");
         console.log(activePaginationButton);
-        activePaginationButton.nextSibling.classList.add("bg-blue", "text-white");
+        activePaginationButton.previousSibling.classList.add("bg-blue", "text-white");
       }
     } else {
       console.log("You have a small screen!");
-      pagination.children[1].innerHTML = pagination.children[1].innerHTML + 1;
+      pagination.children[1].innerHTML = pagination.children[1].innerHTML - 1;
     }
-    pageIndex++;
   }
 }

@@ -249,12 +249,11 @@ blogPagination numberOfPosts =
       div_ [id_ "pagination", mkClasses_ "flex h-12 font-medium rounded-full bg-gray-200"] $
         if numberOfPages > 5
         then do
-          let middle = numberOfPages `div` 2
           makeActivePageButton 1
           makePageButtonDots
-          makePageButton (middle - 1)
-          makePageButton middle
-          makePageButton (middle + 1)
+          makePageButton 2
+          makePageButton 3
+          makePageButton 4
           makePageButtonDots
           makePageButton numberOfPages
         else makePageButtons numberOfPages
