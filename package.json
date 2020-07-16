@@ -5,6 +5,7 @@
   "main": "postcss.config.js",
   "scripts": {
     "start": "webpack-dev-server --mode=development --config webpack.config.js",
+    "md-gen": "cd ./html-gen && stack build && stack test",
     "html-gen": "cd ./html-gen && stack build --fast && stack exec html-gen-exe",
     "purs-to-js": "cd ./purs && bash purs-to-js.sh",
     "test": "echo \"Error: no test specified\" && exit 1"

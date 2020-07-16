@@ -2,6 +2,17 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack'); //to access built-in plugins
 
+function makeNewHtmlWebpackPlugins (numberOfPosts) {
+  for (i = 1; i <= numberOfPosts; i++) {
+    return new HtmlWebpackPlugin ({
+      template: './dist/blog-posts/' + i + '.html',
+      inject: true,
+      chunks: ['index'],
+      filename: './dist/blog-posts/' + i + '.html'
+    })
+  }
+}
+
 module.exports = {
   entry: {
     index: './src/index.js',
@@ -67,5 +78,5 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     })
-  ]
+  ].concat(makeNewHtmlWebpackPlugins(1))
 }
