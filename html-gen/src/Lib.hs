@@ -57,6 +57,7 @@ import qualified System.Directory as Directory
 import qualified Text.Pandoc as Pandoc
 import qualified Text.Pandoc.Highlighting as Highlighting
 
+
 someFunc :: IO ()
 someFunc = do
   -- Render index page
@@ -246,7 +247,7 @@ blogPagination numberOfPosts =
               , mkClasses_ "feather feather-chevron-left w-6 h-6"
               ] $ polyline_ [points_ "15 18 9 12 15 6"]
         ""
-      div_ [id_ "pagination", mkClasses_ "flex h-12 font-medium rounded-full bg-gray-200"] $
+      div_ [id_ "pagination", mkClasses_ "flex h-12 font-medium rounded-full bg-gray-200"] $ do
         if numberOfPages > 5
         then do
           makeActivePageButton 1
@@ -257,6 +258,8 @@ blogPagination numberOfPosts =
           makePageButtonDots
           makePageButton numberOfPages
         else makePageButtons numberOfPages
+      div_ [id_ "small-pagination", mkClasses_ "md:hidden flex h-12 font-medium rounded-full bg-gray-200"] $
+        div_ [mkClasses_ "w-12 h-12 md:hidden flex justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-green text-white"] "1"
       button_ [id_ "next-page", mkClasses_ "h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"] $
         svg_ [xmlns_ "http://www.w3.org/2000/svg"
               , width_ "100%"

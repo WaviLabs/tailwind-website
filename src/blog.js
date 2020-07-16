@@ -8,6 +8,7 @@ import $ from 'jquery';
 //       each press
 // TODO: Add page button for small screen size
 // TODO: Make buttons link to their own pages
+// When switching between the small and big screen pagination gets messed up.
 
 //Pagination for blog
 $("#blog-cards-grid").load("./blog-pages/1.html")
@@ -24,7 +25,13 @@ var nextButton = document.getElementById("next-page");
 prevButton.addEventListener("click", prevButtonAction);
 nextButton.addEventListener("click", nextButtonAction);
 
-console.log();
+window.addEventListener('resize', () => {
+  pageIndex = 0;
+  document
+  .getElementById("small-pagination")
+  .children[0]
+  .innerHTML = pageIndex + 1
+});
 
 function shiftPaginationForward () {
   pagination.children[2].innerHTML = parseInt(pagination.children[2].innerHTML) + 1
@@ -106,7 +113,7 @@ function nextButtonAction () {
       }
     } else {
       console.log("You have a small screen!");
-      pagination.children[1].innerHTML = pagination.children[1].innerHTML + 1;
+      document.getElementById("small-pagination").children[0].innerHTML = parseInt(document.getElementById("small-pagination").children[0].innerHTML) + 1;
     }
   }
 }
@@ -179,7 +186,7 @@ function prevButtonAction () {
       }
     } else {
       console.log("You have a small screen!");
-      pagination.children[1].innerHTML = pagination.children[1].innerHTML - 1;
+      document.getElementById("small-pagination").children[0].innerHTML = parseInt(document.getElementById("small-pagination").children[0].innerHTML) - 1;
     }
   }
 }
