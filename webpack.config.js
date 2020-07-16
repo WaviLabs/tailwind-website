@@ -1,11 +1,26 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'); //to access built-in plugins
+
+function makeNewHtmlWebpackPlugins (numberOfPosts) {
+  for (i = 1; i <= numberOfPosts; i++) {
+    return new HtmlWebpackPlugin ({
+      template: './dist/blog-posts/' + i + '.html',
+      inject: true,
+      chunks: ['index'],
+      filename: './dist/blog-posts/' + i + '.html'
+    })
+  }
+}
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    blog: './src/blog.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -52,6 +67,16 @@ module.exports = {
       inject: true,
       chunks: ['index'],
       filename: './dist/blog.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './dist/blogT.html',
+      inject: true,
+      chunks: ['index'],
+      filename: './dist/blogT.html'
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
     })
-  ]
+  ].concat(makeNewHtmlWebpackPlugins(1))
 }
