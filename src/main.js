@@ -63,12 +63,25 @@ function checkParent(t, elm) {
   return false;
 }
 
-var checkbox = document.getElementById('toggleA');
+var checkboxA = document.getElementById('toggleA');
+var checkboxB = document.getElementById('toggleB');
 
-checkbox.addEventListener('change', function() {
+checkboxA.addEventListener('change', function() {
   if(this.checked) {
     document.documentElement.classList.add('mode-dark');
+    checkboxB.checked = true;
   } else {
     document.documentElement.classList.remove('mode-dark');
+    checkboxB.checked = false;
+  }
+});
+
+checkboxB.addEventListener('change', function() {
+  if(this.checked) {
+    document.documentElement.classList.add('mode-dark');
+    checkboxA.checked = true;
+  } else {
+    document.documentElement.classList.remove('mode-dark');
+    checkboxA.checked = false;
   }
 });
