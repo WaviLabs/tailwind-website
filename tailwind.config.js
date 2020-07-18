@@ -12,7 +12,8 @@ module.exports = {
         pearl: '#EAE0C8',
         coral: '#FF7F50',
         coral_pink: '#F08080',
-        dark: '#00122E'
+        dark: '#00122E',
+        dark_alt: '#454d62'
       }
     },
   },

@@ -62,3 +62,13 @@ function checkParent(t, elm) {
   }
   return false;
 }
+
+var checkbox = document.getElementById('toggleA');
+
+checkbox.addEventListener('change', function() {
+  if(this.checked) {
+    document.documentElement.classList.add('mode-dark');
+  } else {
+    document.documentElement.classList.remove('mode-dark');
+  }
+});
