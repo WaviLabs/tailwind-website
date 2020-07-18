@@ -9,9 +9,9 @@
 </head>
 
 <!-- Implement gradeint class in CSS -->
-<body class="bg-white font-sans text-blue leading-normal tracking-normal gradient">
+<body class="bg-white dark:bg-dark font-sans text-blue leading-normal tracking-normal gradient">
   <!-- NAVBAR START -->
-  <nav class="fixed top-0 w-full z-10 bg-white p-6 shadow">
+  <nav class="fixed bg-white dark:bg-dark top-0 w-full z-10 p-6 shadow">
     <!-- LARGE NAVBAR -->
     <div class="w-full flex flex-wrap items-center justify-between">
       <div class="lg:flex hidden text-lg">
@@ -84,7 +84,7 @@
   <!-- HERO START -->
   <div class="bg-blue flex flex-col md:flex-row items-center pt-40 pb-16">
     <!--Left Col-->
-    <div class="flex flex-col w-full lg:w-1/2 md:ml-6 justify-center items-start text-blue py-12 px-6 bg-white rounded shadow">
+    <div class="flex flex-col w-full lg:w-1/2 md:ml-6 justify-center items-start text-blue py-12 px-6 rounded shadow">
       <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
       <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
       <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
@@ -92,7 +92,7 @@
         Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
         and button below.</p>
       <button
-        class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow-xl py-2 px-4 text-xl">Super
+        class="hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow-xl py-2 px-4 text-xl">Super
         Button</button>
     </div>
     <!--Right Col-->
@@ -108,13 +108,14 @@
   <!-- HERO END -->
 
   <!-- STATISTICS BAR START -->
+
   <!-- STATISTICS BAR END -->
 
   <!-- Triple columns -->
   <section class="border-b py-8">
     <div class="container mx-auto flex flex-wrap items-center pt-4">
       <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-blue">
-        What We Do
+        Why Wavi Labs?
       </h1>
       <div class="w-full mb-4">
         <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -122,42 +123,46 @@
     </div>
 
     <div class="container mx-auto flex flex-wrap justify-center pb-12">
-
       <div class="w-full md:w-1/3 p-8 flex flex-col">
-        <a class="px-6 py-4 text-center rounded shadow hover:shadow-lg">
+        <a class="px-6 py-4 text-center rounded shadow">
           <div class="flex flex-col w-full justify-center items-center">
-            <img class="w-32 h-32 items-center mb-4" src="lambda.png" alt="Sunset in the mountains">
+            <img class="w-32 h-32 items-center mb-4" src="united-states.png" alt="Sunset in the mountains">
           </div>
           <h2 class="font-bold text-3xl mb-2">Engineered In The U.S.A.</h2>
-          <p class="text-gray-700 text-base">
+          <p class="text-gray-700 text-2xl ">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
           </p>
         </a>
       </div>
 
       <div class="w-full md:w-1/3 p-8 flex flex-col">
-        <a class="px-6 py-4 text-center rounded shadow hover:shadow-lg">
+        <a class="px-6 py-4 text-center rounded shadow">
           <div class="flex flex-col w-full justify-center items-center">
             <img class="w-32 h-32 items-center mb-4" src="lambda.png" alt="Sunset in the mountains">
           </div>
           <h2 class="font-bold text-3xl mb-2">Functional Programming</h2>
-          <p class="text-gray-700 text-base">
+          <p class="text-gray-700 text-2xl">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
           </p>
         </a>
       </div>
 
       <div class="w-full md:w-1/3 p-8 flex flex-col">
-        <a class="px-6 py-4 text-center rounded shadow hover:shadow-lg">
+        <a class="px-6 py-4 text-center rounded shadow">
           <div class="flex flex-col w-full justify-center items-center">
-            <img class="w-32 h-32 items-center mb-4" src="lambda.png" alt="Sunset in the mountains">
+            <img class="w-32 h-32 items-center mb-4" src="chisel.png" alt="Sunset in the mountains">
           </div>
           <h2 class="font-bold text-3xl mb-2">Software Craftsmanship</h2>
-          <p class="text-gray-700 text-base">
+          <p class="text-gray-700 text-2xl">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
           </p>
         </a>
       </div>
+      <button class="hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow py-2 px-4 text-2xl">
+        Read More
+      </button>
+
+
   </section>
 
   <section class="border-b py-8">
@@ -167,7 +172,7 @@
         <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
           <img src="square-image.png" alt="square">
         </div>
-        <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow px-8 py-8">
+        <div class="text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow px-8 py-8">
           <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
           <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
           <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
@@ -175,8 +180,9 @@
             Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
             and button below.</p>
           <button
-            class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow py-2 px-4 text-xl">Super
-            Button</button>
+            class="hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow py-2 px-4 text-xl">Super
+            Button
+          </button>
         </div>
       </div>
 
@@ -184,7 +190,7 @@
       <br>
 
       <div class="flex flex-wrap-reverse">
-        <div class="bg-white text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow px-8 py-8">
+        <div class="text-blue flex flex-col w-full lg:w-1/2 justify-center items-start rounded shadow px-8 py-8">
           <p class="uppercase tracking-loose text-2xl">Wavi Labs LLC</p>
           <h1 class="font-bold text-4xl my-4">The future of software construction.</h1>
           <p class="leading-normal mb-4 text-xl">Enter your super app's description here... The key is to find the right
@@ -192,7 +198,7 @@
             Don't want it to be too long, but then don't want it to be too short so that it looks weird between the title
             and button below.</p>
           <button
-            class="bg-white hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow py-2 px-4 text-xl">Super
+            class="hover:bg-blue text-blue hover:text-white rounded shadow hover:shadow py-2 px-4 text-xl">Super
             Button</button>
         </div>
         <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
@@ -213,7 +219,7 @@
               <div class="bg-blue rounded-full h-6 w-6 shadow"></div>
               <div class="text-blue flex-1 ml-4 text-2xl font-bold">Consult</div>
             </div>
-            <div class="bg-white text-blue rounded text-lg ml-10 p-6 shadow">
+            <div class="text-blue rounded text-lg ml-10 p-6 shadow">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolor voluptatem ab sit dolore, labore iusto suscipit illum quae ratione quaerat aspernatur eligendi expedita, aliquid culpa possimus distinctio in obcaecati?
             </div>
           </li>
@@ -222,7 +228,7 @@
               <div class="bg-blue rounded-full h-6 w-6 shadow"></div>
               <div class="text-blue flex-1 ml-4 text-2xl font-bold">Prototype</div>
             </div>
-            <div class="bg-white text-blue rounded text-lg ml-10 p-6 shadow">
+            <div class="text-blue rounded text-lg ml-10 p-6 shadow">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolor voluptatem ab sit dolore, labore iusto suscipit illum quae ratione quaerat aspernatur eligendi expedita, aliquid culpa possimus distinctio in obcaecati?
             </div>
           </li>
@@ -231,7 +237,7 @@
               <div class="bg-blue rounded-full h-6 w-6 shadow"></div>
               <div class="text-blue flex-1 ml-4 text-2xl font-bold">Craft</div>
             </div>
-            <div class="bg-white text-blue rounded text-lg ml-10 p-6 shadow">
+            <div class="text-blue rounded text-lg ml-10 p-6 shadow">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda harum dolore autem incidunt nulla, neque rem aliquid praesentium debitis exercitationem, consequatur libero. Ratione ab magni repellat quod quidem ipsam dolorum.
             </div>
           </li>
@@ -240,7 +246,7 @@
               <div class="bg-blue rounded-full h-6 w-6 shadow"></div>
               <div class="text-blue flex-1 ml-4 text-2xl font-bold">Maintain</div>
             </div>
-            <div class="bg-white text-blue rounded text-lg ml-10 p-6 shadow">
+            <div class="text-blue rounded text-lg ml-10 p-6 shadow">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione in ipsam culpa reiciendis expedita obcaecati provident, numquam nemo excepturi? Dolores, facilis ipsum nostrum maxime doloribus voluptate laboriosam similique aut. Repudiandae?
             </div>
           </li>
@@ -251,39 +257,4 @@
 </body>
 
 <script src="index.js"></script>
-<script>
-	/*Toggle dropdown list*/
-	/*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
-
-	var navMenuDiv = document.getElementById("nav-content");
-	var navMenu = document.getElementById("nav-toggle");
-
-	document.onclick = check;
-	function check(e){
-	  var target = (e && e.target) || (event && event.srcElement);
-
-	  //Nav Menu
-	  if (!checkParent(target, navMenuDiv)) {
-		// click NOT on the menu
-		if (checkParent(target, navMenu)) {
-		  // click on the link
-		  if (navMenuDiv.classList.contains("hidden")) {
-			navMenuDiv.classList.remove("hidden");
-		  } else {navMenuDiv.classList.add("hidden");}
-		} else {
-		  // click both outside link and outside menu, hide menu
-		  navMenuDiv.classList.add("hidden");
-		}
-	  }
-
-	}
-	function checkParent(t, elm) {
-	  while(t.parentNode) {
-		if( t == elm ) {return true;}
-		t = t.parentNode;
-	  }
-	  return false;
-	}
-</script>
-
 </html>
