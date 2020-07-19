@@ -3,43 +3,171 @@ import "./main.js";
 
 import Chart from 'chart.js';
 
-var ctx = document.getElementById('myChart');
+var ctx1 = document.getElementById('myChart1');
 
-var myChart = new Chart(ctx, {
-  type: 'bar',
+const inputs1 = [0,1,2,3,4,5,6,7,8,9,10];
+const inputs2 = [1,2,3,4,5,6,7,8,9,10,11];
+
+const data1 = inputs1.map(x => x**2);
+
+const data2 = inputs2.map(x => Math.log2(x ** 10));
+
+var myChart1 = new Chart(ctx1, {
+  type: 'line',
   data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-      }]
+    labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    datasets: [{
+      label: 'Traditional',
+      data: data1,
+      backgroundColor: 'rgba(255, 99, 132, 1)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      fill: false
+    } , {
+      label: 'Type Driven',
+      data: data2,
+      backgroundColor: 'rgba(153, 102, 255, 1)',
+      borderColor: 'rgba(153, 102, 255, 1)',
+      fill: false
+    }]
   },
   options: {
-      scales: {
-          yAxes: [{
-              ticks: {
-                  beginAtZero: true
-              }
-          }]
+    elements: {
+      point: {
+        radius: 0
       }
+    },
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Complexity Over Features Added'
+    },
+    tooltips: {
+      mode: 'index',
+      intersect: false,
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true
+    },
+    scales: {
+      xAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Additional Features'
+        },
+        ticks:{
+          display: false
+        }
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Complexity'
+        },
+        ticks:{
+          display: false
+        }
+      }]
+    }
   }
 });
 
+var ctx2 = document.getElementById('myChart2');
+var isWaviLabs = true;
 
+var myChart2 = new Chart(ctx2, {
+  type: 'doughnut',
+  data: {
+    labels: ['Unit Tests', 'Integration Tests', 'Property-based Tests', 'Static Type Checker', 'Other Tests'],
+    datasets: [{
+      label: 'Type Driven',
+      data: [1, 1, 1, 1, 1],
+      backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(160, 213, 104, 1)', 'rgba(255, 206, 84, 1)', 'rgba(237, 85, 100, 1)']
+    }
+  ]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Wavi Labs Test Coverage',
+      fontSize: 36
+    },
+    legend: {
+      labels: {
+        fontSize: 24
+      }
+    },
+    tooltips: {
+      enabled: false
+    }
+  }
+});
+
+function toggleChart2 () {
+  if (isWaviLabs) {
+    myChart2 = new Chart(ctx2, {
+      type: 'doughnut',
+      data: {
+        labels: ['Unit Tests', 'Integration Tests', 'Property-based Tests', 'Static Type Checker', 'Other Tests'],
+        datasets: [{
+          label: 'Type Driven',
+          data: [1, 1, 0, 0, 1],
+          backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(160, 213, 104, 1)', 'rgba(255, 206, 84, 1)', 'rgba(237, 85, 100, 1)']
+        }
+      ]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Traditional Test Coverage',
+          fontSize: 36
+        },
+        legend: {
+          labels: {
+            fontSize: 24
+          }
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
+    });
+    isWaviLabs = false;
+  } else {
+    myChart2 = new Chart(ctx2, {
+      type: 'doughnut',
+      data: {
+        labels: ['Unit Tests', 'Integration Tests', 'Property-based Tests', 'Static Type Checker', 'Other Tests'],
+        datasets: [{
+          label: 'Type Driven',
+          data: [1, 1, 1, 1, 1],
+          backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(160, 213, 104, 1)', 'rgba(255, 206, 84, 1)', 'rgba(237, 85, 100, 1)']
+        }
+      ]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Wavi Labs Test Coverage',
+          fontSize: 36
+        },
+        legend: {
+          labels: {
+            fontSize: 24
+          }
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
+    });
+    isWaviLabs = true;
+  }
+}
+
+window.setInterval(toggleChart2, 5000);
