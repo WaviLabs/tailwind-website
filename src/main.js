@@ -63,25 +63,50 @@ function checkParent(t, elm) {
   return false;
 }
 
+
+// TODO: Remove duplication
+var htmlDoc = document.documentElement;
 var checkboxA = document.getElementById('toggleA');
 var checkboxB = document.getElementById('toggleB');
 
-checkboxA.addEventListener('change', function() {
-  if(this.checked) {
-    document.documentElement.classList.add('mode-dark');
+initDarkMode();
+
+checkboxA.addEventListener('change', flipDarkMode);
+checkboxB.addEventListener('change', flipDarkMode);
+
+function flipDarkMode () {
+  console.log('Wonderboy');
+  localStorage.darkMode = this.checked;
+  console.log(localStorage.darkMode);
+  if (localStorage.darkMode === 'true') {
+    htmlDoc.classList.add('mode-dark');
+    checkboxA.checked = true;
     checkboxB.checked = true;
+    console.log('dark');
+  } else if (localStorage.darkMode === 'false') {
+    htmlDoc.classList.remove('mode-dark');
+    checkboxA.checked = false;
+    checkboxB.checked = false;
+    console.log('light')
+  }
+}
+
+function initDarkMode () {
+  console.log("Init Dark Mode")
+  if (localStorage.darkMode === 'true') {
+    console.log("initDarkMode is True")
+    htmlDoc.classList.add('mode-dark');
+    checkboxA.checked = true;
+    checkboxB.checked = true;
+  } else if (localStorage.darkMode === 'false') {
+    console.log("initDarkMode is false")
+    htmlDoc.classList.remove('mode-dark');
+    checkboxA.checked = false;
+    checkboxB.checked = false;
   } else {
-    document.documentElement.classList.remove('mode-dark');
+    console.log("initDarkMode is null")
+    htmlDoc.classList.remove('mode-dark');
+    checkboxA.checked = false;
     checkboxB.checked = false;
   }
-});
-
-checkboxB.addEventListener('change', function() {
-  if(this.checked) {
-    document.documentElement.classList.add('mode-dark');
-    checkboxA.checked = true;
-  } else {
-    document.documentElement.classList.remove('mode-dark');
-    checkboxA.checked = false;
-  }
-});
+}
