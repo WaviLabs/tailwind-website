@@ -1,1 +1,104 @@
-<!DOCTYPE HTML><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>Wavi Labs LLC</title></head><body><nav class="fixed top-0 w-full z-10 bg-white p-6 shadow"><div class="w-full flex flex-wrap items-center justify-between"><div class="lg:flex hidden text-lg"><span><a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">Blog</a><a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">Blog</a><a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">Blog</a><a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">Blog</a></span></div><div class="lg:flex lg:items-center hidden"><img height="300" viewBox="0 0 300 300" width="300" src="logo.png" alt="Wavi Labs logo"></div><div class="flex items-center lg:hidden"><img height="200" viewBox="0 0 200 200" width="200" src="logo.png" alt="Wavi Labs logo"></div><div class="lg:flex lg:items-center hidden text-lg"><button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4">Button</button><button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">Button</button></div><div class="block items-center lg:hidden text-lg"><button id="nav-toggle" class="flex flex-wrap items-center px-3 py-2 border rounded text-blue border-blue"><svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></svg></button></div><div id="nav-content" class="w-full items-center mt-2 z-20 hidden"><ul class="list-reset flex flex-col justify-end flex-1 items-center"><li><a href="#" class="inline-block py-2 px-4 text-black no-underline">Blog</a></li><li><a href="#" class="inline-block py-2 px-4 text-black no-underline">Blog</a></li><li><a href="#" class="inline-block py-2 px-4 text-black no-underline">Blog</a></li><li><a href="#" class="inline-block py-2 px-4 text-black no-underline">Blog</a></li><li><button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">Button</button></li></ul></div></div></nav><div class="container md:flex md:justify-between align-middle mx-auto pt-40 pb-10"><h1 class="text-4xl text-blue font-bold">Wavi Labs Archive</h1><div class="flex items-center border-b border-teal-500 py-2"><input type="text" aria-label="Search" placeholder="Search" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"><button type="button" class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded">Search</button></div></div><div class="container flex px-auto mx-auto justify-center"><div id="blog-cards-grid" class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"></div></div><div class="flex flex-col items-center my-12"><div class="flex text-gray-700"><button id="prev-page" class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"><svg xmlns="http://www.w3.org/2000/svg" height="100%" stroke-linejoin="round" viewBox="0 0 24 24" width="100%" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" class="feather feather-chevron-left w-6 h-6"><polyline points="15 18 9 12 15 6"></polyline></svg></button><div id="pagination" class="flex h-12 font-medium rounded-full bg-gray-200"><div href="./blog-pages/blog-page-1.html" class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-blue text-white">1</div></div><div id="small-pagination" class="md:hidden flex h-12 font-medium rounded-full bg-gray-200"><div class="w-12 h-12 md:hidden flex justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-green text-white">1</div></div><button id="next-page" class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"><svg xmlns="http://www.w3.org/2000/svg" height="100%" stroke-linejoin="round" viewBox="0 0 24 24" width="100%" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" class="feather feather-chevron-left w-6 h-6"><polyline points="9 18 15 12 9 6"></polyline></svg></button></div></div></body><script src="blog.js"></script></html>
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Wavi Labs LLC</title>
+</head>
+
+<body>
+  <nav class="fixed top-0 w-full z-10 bg-white p-6 shadow">
+    <div class="w-full flex flex-wrap items-center justify-between">
+      <div class="lg:flex hidden text-lg"><span><a href="#"
+            class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">Blog</a><a href="#"
+            class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">Blog</a><a href="#"
+            class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">Blog</a><a href="#"
+            class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">Blog</a></span></div>
+      <div class="lg:flex lg:items-center hidden"><img height="300" viewBox="0 0 300 300" width="300" src="logo.png"
+          alt="Wavi Labs logo"></div>
+      <div class="flex items-center lg:hidden"><img height="200" viewBox="0 0 200 200" width="200" src="logo.png"
+          alt="Wavi Labs logo"></div>
+      <div class="lg:flex lg:items-center hidden text-lg"><button
+          class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4">Button</button><button
+          class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">Button</button>
+      </div>
+      <div class="block items-center lg:hidden text-lg"><button id="nav-toggle"
+          class="flex flex-wrap items-center px-3 py-2 border rounded text-blue border-blue"><svg
+            xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5">
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z">
+          </svg></button></div>
+      <div id="nav-content" class="w-full items-center mt-2 z-20 hidden">
+        <ul class="list-reset flex flex-col justify-end flex-1 items-center">
+          <li><a href="#" class="inline-block py-2 px-4 text-black no-underline">Blog</a></li>
+          <li><a href="#" class="inline-block py-2 px-4 text-black no-underline">Blog</a></li>
+          <li><a href="#" class="inline-block py-2 px-4 text-black no-underline">Blog</a></li>
+          <li><a href="#" class="inline-block py-2 px-4 text-black no-underline">Blog</a></li>
+          <li><button
+              class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">Button</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container md:flex md:justify-between align-middle mx-auto pt-40 pb-10">
+    <h1 class="text-4xl text-blue font-bold">Wavi Labs Archive</h1>
+    <div class="flex items-center border-b border-teal-500 py-2"><input type="text" aria-label="Search"
+        placeholder="Search"
+        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"><button
+        type="button"
+        class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded">Search</button>
+    </div>
+  </div>
+  <div class="container flex px-auto mx-auto justify-center">
+    <div id="blog-cards-grid"
+      class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"></div>
+  </div>
+  <div class="flex flex-col items-center my-12">
+    <div class="flex text-gray-700"><button id="prev-page"
+        class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"><svg
+          xmlns="http://www.w3.org/2000/svg" height="100%" stroke-linejoin="round" viewBox="0 0 24 24" width="100%"
+          stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+          class="feather feather-chevron-left w-6 h-6">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg></button>
+      <div id="pagination" class="flex h-12 font-medium rounded-full bg-gray-200">
+        <div href="./blog-pages/blog-page-1.html"
+          class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-blue text-white">
+          1</div>
+        <div
+          class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full">
+          ...</div>
+        <div href="./blog-pages/blog-page-2.html"
+          class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full">
+          2</div>
+        <div href="./blog-pages/blog-page-3.html"
+          class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full">
+          3</div>
+        <div href="./blog-pages/blog-page-4.html"
+          class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full">
+          4</div>
+        <div
+          class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full">
+          ...</div>
+        <div href="./blog-pages/blog-page-10.html"
+          class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full">
+          10</div>
+      </div>
+      <div id="small-pagination" class="md:hidden flex h-12 font-medium rounded-full bg-gray-200">
+        <div
+          class="w-12 h-12 md:hidden flex justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-green text-white">
+          1</div>
+      </div><button id="next-page" class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200"><svg
+          xmlns="http://www.w3.org/2000/svg" height="100%" stroke-linejoin="round" viewBox="0 0 24 24" width="100%"
+          stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+          class="feather feather-chevron-left w-6 h-6">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg></button>
+    </div>
+  </div>
+</body>
+<script src="blog.js"></script>
+
+</html>

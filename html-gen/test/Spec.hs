@@ -23,6 +23,7 @@ data Markdown = Markdown
   } deriving (Eq, Show)
 
 instance Arbitrary Markdown where
+  arbitrary :: Gen Markdown
   arbitrary = do
     let randomText = Text.pack <$> (Check.listOf $ Check.elements "abcdefghijkglmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
     markdownTitle <- randomText
@@ -78,7 +79,7 @@ writeMarkdown id Markdown{..} = do
 
 main :: IO ()
 main = do
-  loop 66 115
+  loop 1 115
   where
     loop start end =
       if start == end

@@ -16,7 +16,8 @@ function makeNewHtmlWebpackPlugins (numberOfPosts) {
 module.exports = {
   entry: {
     index: './src/index.js',
-    blog: './src/blog.js'
+    blog: './src/blog.js',
+    services: './src/services.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -73,6 +74,12 @@ module.exports = {
       inject: true,
       chunks: ['index'],
       filename: './dist/blogT.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './dist/services.html',
+      injrcy: true,
+      chunks: ['index'],
+      filename: './dist/services.html'
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
