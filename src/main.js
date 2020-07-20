@@ -63,8 +63,6 @@ function checkParent(t, elm) {
   return false;
 }
 
-
-// TODO: Remove duplication
 var htmlDoc = document.documentElement;
 var checkboxA = document.getElementById('toggleA');
 var checkboxB = document.getElementById('toggleB');

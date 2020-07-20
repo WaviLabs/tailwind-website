@@ -79,15 +79,20 @@ var isWaviLabs = true;
 var myChart2 = new Chart(ctx2, {
   type: 'doughnut',
   data: {
-    labels: ['Unit Tests', 'Integration Tests', 'Property-based Tests', 'Static Type Checker', 'Other Tests'],
+    labels: ['Unit Tests', 'Integration Tests', 'Other Tests', 'Property-based Tests', 'Static Type Checker'],
     datasets: [{
       label: 'Type Driven',
       data: [1, 1, 1, 1, 1],
-      backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(160, 213, 104, 1)', 'rgba(255, 206, 84, 1)', 'rgba(237, 85, 100, 1)']
+      backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(237, 85, 100, 1)', 'rgba(160, 213, 104, 1)', 'rgba(255, 206, 84, 1)']
     }
   ]
   },
   options: {
+    elements: {
+      arc: {
+        borderWidth: 0
+      }
+    },
     responsive: true,
     title: {
       display: true,
@@ -110,15 +115,20 @@ function toggleChart2 () {
     myChart2 = new Chart(ctx2, {
       type: 'doughnut',
       data: {
-        labels: ['Unit Tests', 'Integration Tests', 'Property-based Tests', 'Static Type Checker', 'Other Tests'],
+        labels: ['Unit Tests', 'Integration Tests', 'Other Tests'],
         datasets: [{
           label: 'Type Driven',
-          data: [1, 1, 0, 0, 1],
-          backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(160, 213, 104, 1)', 'rgba(255, 206, 84, 1)', 'rgba(237, 85, 100, 1)']
+          data: [1, 1, 1, 1, 1],
+          backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(237, 85, 100, 1)', 'rgba(160, 213, 104, 0)', 'rgba(255, 206, 84, 0)']
         }
       ]
       },
       options: {
+        elements: {
+          arc: {
+            borderWidth: 0
+          }
+        },
         responsive: true,
         title: {
           display: true,
@@ -140,15 +150,20 @@ function toggleChart2 () {
     myChart2 = new Chart(ctx2, {
       type: 'doughnut',
       data: {
-        labels: ['Unit Tests', 'Integration Tests', 'Property-based Tests', 'Static Type Checker', 'Other Tests'],
+        labels: ['Unit Tests', 'Integration Tests', 'Other Tests', 'Property-based Tests', 'Static Type Checker'],
         datasets: [{
           label: 'Type Driven',
           data: [1, 1, 1, 1, 1],
-          backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(160, 213, 104, 1)', 'rgba(255, 206, 84, 1)', 'rgba(237, 85, 100, 1)']
+          backgroundColor: ['rgba(172, 146, 235, 1)', 'rgba(79, 193, 232, 1)', 'rgba(237, 85, 100, 1)', 'rgba(160, 213, 104, 1)', 'rgba(255, 206, 84, 1)']
         }
       ]
       },
       options: {
+        elements: {
+          arc: {
+            borderWidth: 0
+          }
+        },
         responsive: true,
         title: {
           display: true,
