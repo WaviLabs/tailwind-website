@@ -42,8 +42,7 @@ var myChart1 = new Chart(ctx1, {
       text: 'Complexity Over Features Added'
     },
     tooltips: {
-      mode: 'index',
-      intersect: false,
+      enabled: false
     },
     hover: {
       mode: 'nearest',
