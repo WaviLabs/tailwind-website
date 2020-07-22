@@ -20,6 +20,7 @@ import Lucid
   , h1_
   , img_
   , input_
+  , label_
   , li_
   , nav_
   , script_
@@ -33,6 +34,7 @@ import Lucid
   , class_
   , classes_
   , content_
+  , for_
   , height_
   , href_
   , id_
@@ -136,37 +138,41 @@ path_ = with (makeElementNoEnd "path")
 -- pretty much every page.
 navbar :: Html ()
 navbar = do
-  nav_ [mkClasses_ "fixed top-0 w-full z-10 bg-white p-6 shadow"] $ do
+  nav_ [mkClasses_ "fixed bg-white dark:bg-dark top-0 w-full z-10 p-6 shadow"] $ do
     div_ [mkClasses_ "w-full flex flex-wrap items-center justify-between"] $ do
       -- Contains nav links to other pages
       div_ [mkClasses_ "lg:flex hidden text-lg"] $ do
         span_ [] $ do
           a_
-            [href_ "#", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
+            [href_ "./services.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
+            "Services"
+          a_
+            [href_ "./blogT.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
             "Blog"
           a_
             [href_ "#", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
-            "Blog"
+            "Code"
           a_
-            [href_ "#", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
-            "Blog"
-          a_
-            [href_ "#", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
-            "Blog"
-      -- Big logo for large and above
-      div_ [mkClasses_ "lg:flex lg:items-center hidden"] $
-        img_ [src_ "logo.png", alt_ "Wavi Labs logo", width_ "300", height_ "300", viewBox_ "0 0 300 300"]
-      -- Small for less than large
-      div_ [mkClasses_ "flex items-center lg:hidden"] $
-        img_ [src_ "logo.png", alt_ "Wavi Labs logo", width_ "200", height_ "200", viewBox_ "0 0 200 200"]
+            [href_ "./faqT.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
+            "FAQ"
+      a_ [href_ "./index.html"] $ do
+        -- Big logo for large and above
+        div_ [mkClasses_ "lg:flex lg:items-center hidden"] $
+          img_ [src_ "logo.png", alt_ "Wavi Labs logo", width_ "300", height_ "300", viewBox_ "0 0 300 300"]
+        -- Small for less than large
+        div_ [mkClasses_ "flex items-center lg:hidden"] $
+          img_ [src_ "logo.png", alt_ "Wavi Labs logo", width_ "200", height_ "200", viewBox_ "0 0 200 200"]
       -- Random buttons for large navbar
       div_ [mkClasses_ "lg:flex lg:items-center hidden text-lg"] $ do
-        button_
-          [mkClasses_ "bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4"]
-          "Button"
-        button_
-          [mkClasses_ "bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow"]
-          "Button"
+        label_ [for_ "toggleA", mkClasses_ "flex items-center cursor-pointer"] $ do
+          div_ [mkClasses_ "mr-3 text-gray-700 font-medium"] $
+            img_ [src_ "sun.svg", alt_ "sun"]
+          div_ [class_ "relative"] $ do
+            input_ [id_ "toggleA", type_ "checkbox", class_ "hidden"]
+            div_ [mkClasses_ "toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"] ""
+            div_ [mkClasses_ "toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"] ""
+          div_ [mkClasses_ "ml-3 text-gray-700 font-medium"] $
+            img_ [src_ "moon.svg", alt_ "moon"]
       -- Small hamburger icon for less than large
       div_ [mkClasses_ "block items-center lg:hidden text-lg"] $
         button_ [id_ "nav-toggle", mkClasses_ "flex flex-wrap items-center px-3 py-2 border rounded text-blue border-blue"] $
@@ -176,11 +182,20 @@ navbar = do
       -- Hamburger content
       div_ [id_ "nav-content", mkClasses_ "w-full items-center mt-2 z-20 hidden"] $
         ul_ [mkClasses_ "list-reset flex flex-col justify-end flex-1 items-center"] $ do
-          li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
-          li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
-          li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
-          li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
-          li_ $ button_ [mkClasses_ "bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow"] "Button"
+          li_ $ a_ [href_ "./blogT.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
+          li_ $ a_ [href_ "./services.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Services"
+          li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Code"
+          li_ $ a_ [href_ "./faqT.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "FAQ"
+          li_ $
+            label_ [for_ "toggleA", mkClasses_ "flex items-center cursor-pointer"] $ do
+              div_ [mkClasses_ "mr-3 text-gray-700 font-medium"] $
+                img_ [src_ "sun.svg", alt_ "sun"]
+              div_ [class_ "relative"] $ do
+                input_ [id_ "toggleA", type_ "checkbox", class_ "hidden"]
+                div_ [mkClasses_ "toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"] ""
+                div_ [mkClasses_ "toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"] ""
+              div_ [mkClasses_ "ml-3 text-gray-700 font-medium"] $
+                img_ [src_ "moon.svg", alt_ "moon"]
 
 -----------
 -- PAGES --
