@@ -187,11 +187,11 @@ navbar = do
           li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Code"
           li_ $ a_ [href_ "./faqT.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "FAQ"
           li_ $
-            label_ [for_ "toggleA", mkClasses_ "flex items-center cursor-pointer"] $ do
+            label_ [for_ "toggleB", mkClasses_ "flex items-center cursor-pointer"] $ do
               div_ [mkClasses_ "mr-3 text-gray-700 font-medium"] $
                 img_ [src_ "sun.svg", alt_ "sun"]
               div_ [class_ "relative"] $ do
-                input_ [id_ "toggleA", type_ "checkbox", class_ "hidden"]
+                input_ [id_ "toggleB", type_ "checkbox", class_ "hidden"]
                 div_ [mkClasses_ "toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"] ""
                 div_ [mkClasses_ "toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"] ""
               div_ [mkClasses_ "ml-3 text-gray-700 font-medium"] $

@@ -2,7 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
 
-import Test.QuickCheck (Arbitrary)
+import Test.QuickCheck (Arbitrary, Gen)
 import Data.Text (Text)
 
 import qualified Data.Text as Text
@@ -23,7 +23,6 @@ data Markdown = Markdown
   } deriving (Eq, Show)
 
 instance Arbitrary Markdown where
-  arbitrary :: Gen Markdown
   arbitrary = do
     let randomText = Text.pack <$> (Check.listOf $ Check.elements "abcdefghijkglmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
     markdownTitle <- randomText
@@ -79,7 +78,7 @@ writeMarkdown id Markdown{..} = do
 
 main :: IO ()
 main = do
-  loop 1 115
+  loop 1 20
   where
     loop start end =
       if start == end
