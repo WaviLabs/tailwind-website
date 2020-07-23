@@ -15,9 +15,12 @@ import Lucid
   , button_
   , div_
   , doctype_
+  , form_
   , head_
+  , hr_
   , html_
   , h1_
+  , h2_
   , img_
   , input_
   , label_
@@ -29,6 +32,7 @@ import Lucid
   , title_
   , ul_
   -- ATTRIBUTES
+  , action_
   , alt_
   , charset_
   , class_
@@ -40,10 +44,15 @@ import Lucid
   , id_
   , lang_
   , meta_
+  , method_
   , name_
   , placeholder_
   , src_
+  , style_
+  , tabindex_
+  , target_
   , type_
+  , value_
   , width_
   , xmlns_
   )
@@ -109,6 +118,9 @@ mkClasses_ = classes_ . Text.words
 aria_label_ :: Text -> Attribute
 aria_label_ = makeAttribute "aria-label"
 
+aria_hidden_ :: Text -> Attribute
+aria_hidden_ = makeAttribute "aria-hidden"
+
 viewBox_ :: Text -> Attribute
 viewBox_ = makeAttribute "viewBox"
 
@@ -135,6 +147,9 @@ points_ = makeAttribute "points"
 
 path_ :: Applicative m => [Attribute] -> HtmlT m ()
 path_ = with (makeElementNoEnd "path")
+
+nonvalidate_ :: Attribute
+nonvalidate_ = makeAttribute "nonvalidate" ""
 
 -- | Navbar for the website. This will appear on
 -- pretty much every page.
@@ -224,6 +239,7 @@ blogHtml numOfPosts = wrapBody "blog" $ do
   -- via javascript
   blogCardsGrid
   blogPagination numOfPosts
+  blogMailchimpForm
   -- TODO: footer
   where
     blogHeader :: Html ()
@@ -246,6 +262,56 @@ blogHtml numOfPosts = wrapBody "blog" $ do
     blogCardsGrid :: Html ()
     blogCardsGrid = div_ [mkClasses_ "container flex px-auto mx-auto justify-center"] $
       div_ [id_ "blog-cards-grid", mkClasses_ "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"] ""
+
+    blogMailchimpForm :: Html ()
+    blogMailchimpForm = do
+      hr_ [mkClasses_ "border-b-2 border-gray-400 mb-8 mx-4"]
+      div_ [id_ "mc_embed_signup", mkClasses_ "container mx-auto px-4"] $ do
+        form_
+          [ action_ "https://wavi-labs.us17.list-manage.com/subscribe/post?u=e4b25a75af7f665ebcdf444d9&amp;id=991e220301"
+          , method_ "post"
+          , id_ "mc-embedded-subscribe-form"
+          , name_ "mc-embedded-subscribe-form"
+          , class_ "validate"
+          , target_ "_blank"
+          , nonvalidate_
+          ] $ do
+            div_ [id_ "mc_embed_signup_scroll", mkClasses_ "font-sans bg-white dark:bg-dark rounded-lg shadow-md p-4 text-center"] $ do
+              h2_ [mkClasses_ "font-bold break-normal text-xl md:text-3xl"] "Subscribe for updates and more!"
+              div_ [class_ "indicates-required"] $ do
+                span_ [class_ "asterisk"] "*"
+                " indicates required"
+              div_ [mkClasses_ "mc-field-group w-full text-center pt-4"] $
+                div_ [mkClasses_ "max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center"] $ do
+                  label_
+                    [ for_ "mce-EMAIL"
+                    , mkClasses_ "flex-1 mt-4 block md:inline-block appearance-none text-blue text-base font-semibold tracking-wider uppercase py-4 rounded"
+                    ] $ do
+                      "Email Address "
+                      span_ [class_ "asterisk"] "*"
+                  input_
+                    [ type_ "email"
+                    , value_ ""
+                    , name_ "EMAIL"
+                    , mkClasses_ "required email flex-1 mt-4 appearance-none border border-gray-400 rounded shadow-md p-3 text-gray-600 mr-2 focus:outline-none"
+                    , id_ "mce-EMAIL"
+                    ]
+              div_ [id_ "mce-responses", class_ "clear"] $ do
+                div_ [class_ "response", id_ "mce-error-response", style_ "display:none"] ""
+                div_ [class_ "response", id_ "mce-success-response", style_ "display:none"] ""
+              div_
+                [ style_ "position: absolute; left: -5000px;"
+                , aria_hidden_ "true"
+                ] $ input_ [type_ "text", name_ "b_e4b25a75af7f665ebcdf444d9_991e220301", tabindex_ "-1", value_ ""]
+              div_ [mkClasses_ "clear mt-4"] $
+                input_
+                  [ type_ "submit"
+                  , value_ "Catch The Wave"
+                  , name_ "subscribe"
+                  , id_ "mc-embedded-subscribe"
+                  , mkClasses_ "button cursor-pointer hover:bg-blue dark-hover:bg-green text-blue dark:text-green hover:text-white dark-hover:text-dark rounded shadow py-2 px-4 text-2xl font-bold"
+                  ]
+      hr_ [mkClasses_ "border-b-2 border-gray-400 mb-8 mx-4"]
 
 blogPagination :: Int -> Html ()
 blogPagination numberOfPosts =
