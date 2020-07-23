@@ -15,12 +15,14 @@ import Lucid
   , button_
   , div_
   , doctype_
+  , footer_
   , form_
   , head_
   , hr_
   , html_
   , h1_
   , h2_
+  , h5_
   , img_
   , input_
   , label_
@@ -148,8 +150,8 @@ points_ = makeAttribute "points"
 path_ :: Applicative m => [Attribute] -> HtmlT m ()
 path_ = with (makeElementNoEnd "path")
 
-nonvalidate_ :: Attribute
-nonvalidate_ = makeAttribute "nonvalidate" ""
+novalidate_ :: Attribute
+novalidate_ = makeAttribute "novalidate" ""
 
 -- | Navbar for the website. This will appear on
 -- pretty much every page.
@@ -214,6 +216,46 @@ navbar = do
               div_ [mkClasses_ "ml-3 text-gray-700 font-medium"] $
                 img_ [src_ "moon.svg", alt_ "moon"]
 
+footer :: Html ()
+footer =
+  footer_ [mkClasses_ "bg-gray-100"] $
+    div_ [mkClasses_ "container mx-auto px-6 pt-10 pb-6"] $
+      div_ [mkClasses_ "flex flex-wrap"] $ do
+        div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
+          h5_ [mkClasses_ "uppercase mb-6 font-bold"] "Links"
+          ul_ [mkClasses_ "mb-4"] $ do
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "FAQ"
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Help"
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Support"
+        div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
+          h5_ [mkClasses_ "uppercase mb-6 font-bold"] "Legal"
+          ul_ [mkClasses_ "mb-4"] $ do
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Terms"
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Privacy"
+        div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
+          h5_ [mkClasses_ "uppercase mb-6 font-bold"] "Social"
+          ul_ [mkClasses_ "mb-4"] $ do
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "GitHub"
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Instagram"
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Twitter"
+        div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
+          h5_ [mkClasses_ "uppercase mb-6 font-bold"] "Company"
+          ul_ [mkClasses_ "mb-4"] $ do
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Official Blog"
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "About Us"
+            li_ [mkClasses_ "mt-2"] $
+              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Contact"
+
 -----------
 -- PAGES --
 -----------
@@ -225,6 +267,8 @@ indexHtml :: Html ()
 indexHtml = do
   wrapBody "index" $ do
     navbar
+    div_ [mkClasses_ "bg-blue dark:bg-dark", style_ "height: 1000px;"] ("" :: Html ())
+    footer
 
 ---------------
 -- BLOG PAGE --
@@ -240,7 +284,7 @@ blogHtml numOfPosts = wrapBody "blog" $ do
   blogCardsGrid
   blogPagination numOfPosts
   blogMailchimpForm
-  -- TODO: footer
+  footer
   where
     blogHeader :: Html ()
     blogHeader =
@@ -274,7 +318,7 @@ blogHtml numOfPosts = wrapBody "blog" $ do
           , name_ "mc-embedded-subscribe-form"
           , class_ "validate"
           , target_ "_blank"
-          , nonvalidate_
+          , novalidate_
           ] $ do
             div_ [id_ "mc_embed_signup_scroll", mkClasses_ "font-sans bg-white dark:bg-dark rounded-lg shadow-md p-4 text-center"] $ do
               h2_ [mkClasses_ "font-bold break-normal text-xl md:text-3xl"] "Subscribe for updates and more!"
@@ -311,7 +355,7 @@ blogHtml numOfPosts = wrapBody "blog" $ do
                   , id_ "mc-embedded-subscribe"
                   , mkClasses_ "button cursor-pointer hover:bg-blue dark-hover:bg-green text-blue dark:text-green hover:text-white dark-hover:text-dark rounded shadow py-2 px-4 text-2xl font-bold"
                   ]
-      hr_ [mkClasses_ "border-b-2 border-gray-400 mb-8 mx-4"]
+      hr_ [mkClasses_ "border-b-2 border-gray-400 my-8 mx-4"]
 
 blogPagination :: Int -> Html ()
 blogPagination numberOfPosts =
