@@ -9,40 +9,60 @@
   <title>Wavi Labs LLC</title>
 </head>
 
-<body class="bg-white font-sans text-blue leading-normal tracking-normal gradient">
+<body class="bg-white dark:bg-dark font-sans text-blue leading-normal tracking-normal gradient">
   <!-- NAVBAR START -->
-  <nav class="fixed top-0 w-full z-10 bg-white p-6 shadow">
+  <nav class="fixed bg-white dark:bg-dark top-0 w-full z-10 p-6 shadow">
     <!-- LARGE NAVBAR -->
     <div class="w-full flex flex-wrap items-center justify-between">
       <div class="lg:flex hidden text-lg">
         <span>
-          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
-            Blog
-          </a>
-          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
+          <a href="../services.html" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
             Services
+          </a>
+          <a href="../blogT.html" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
+            Blog
           </a>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
             Code
           </a>
-          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
+          <a href="../faqT.html" class="block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4">
             FAQ
           </a>
         </span>
       </div>
-      <div class="lg:flex lg:items-center hidden">
-        <img src="../logo.png" alt="logo" width="300" height="300" viewBox="0 0 300 300">
-      </div>
-      <div class="flex items-center lg:hidden">
-        <img src="../logo.png" alt="logo" width="200" height="200" viewBox="0 0 200 200">
-      </div>
+      <a href="../index.html">
+        <div class="lg:flex lg:items-center hidden">
+          <img src="../logo.png" alt="logo" width="300" height="300" viewBox="0 0 300 300">
+        </div>
+        <div class="flex items-center lg:hidden">
+          <img src="../logo.png" alt="logo" width="200" height="200" viewBox="0 0 200 200">
+        </div>
+      </a>
       <div class="lg:flex lg:items-center hidden text-lg">
-        <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4">
-          Button
-        </button>
-        <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          Button
-        </button>
+        <!-- Toggle Button -->
+        <label for="toggleA" class="flex items-center cursor-pointer">
+          <!-- label -->
+          <div class="mr-3 text-gray-700 font-medium">
+            <img src="../sun.svg" alt="sun">
+          </div>
+          <!-- toggle -->
+          <div class="relative">
+            <!-- input -->
+            <input id="toggleA" type="checkbox" class="hidden" />
+            <!-- line -->
+            <div
+              class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"
+            ></div>
+            <!-- dot -->
+            <div
+              class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"
+            ></div>
+          </div>
+          <!-- label -->
+          <div class="ml-3 text-gray-700 font-medium">
+            <img src="../moon.svg" alt="moon">
+          </div>
+        </label>
       </div>
       <div class="block items-center lg:hidden text-lg">
         <button id="nav-toggle" class="flex flex-wrap items-center px-3 py-2 border rounded text-blue border-blue">
@@ -50,14 +70,14 @@
         </button>
       </div>
       <div id="nav-content" class="w-full items-center mt-2 z-20 hidden">
-        <ul class="list-reset flex flex-col justify-end flex-1 items-center">
+        <ul class="list-reset flex flex-col justify-center flex-1 items-center">
           <li>
-            <a class="inline-block py-2 px-4 text-black no-underline" href="#">
+            <a class="inline-block py-2 px-4 text-black no-underline" href="./blogT.html">
               Blog
             </a>
           </li>
           <li>
-            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
+            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="./services.html">
               Services
             </a>
           </li>
@@ -67,14 +87,35 @@
             </a>
           </li>
           <li>
-            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
+            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="./faqT.html">
               FAQ
             </a>
           </li>
           <li>
-            <button class="bg-blue hover:bg-green text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-              Button
-            </button>
+            <!-- Toggle Button -->
+            <label for="toggleB" class="flex items-center cursor-pointer">
+              <!-- label -->
+              <div class="mr-3 text-gray-700 font-medium">
+                <img src="../sun.svg" alt="sun">
+              </div>
+              <!-- toggle -->
+              <div class="relative">
+                <!-- input -->
+                <input id="toggleB" type="checkbox" class="hidden" />
+                <!-- line -->
+                <div
+                  class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"
+                ></div>
+                <!-- dot -->
+                <div
+                  class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"
+                ></div>
+              </div>
+              <!-- label -->
+              <div class="ml-3 text-gray-700 font-medium">
+                <img src="../moon.svg" alt="moon">
+              </div>
+            </label>
           </li>
         </ul>
       </div>
@@ -88,8 +129,8 @@
 			<!--Title-->
 			<div class="font-sans">
 				<span class="text-base md:text-sm text-teal-500 font-bold">&lt;<span> <a href="#" class="text-base md:text-sm text-teal-500 font-bold no-underline hover:underline">BACK TO BLOG</a><p></p>
-				<h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">NVCQRJBJkNecJaZB</h1>
-				<p class="text-sm md:text-base font-normal text-gray-600">Published 8/26/15</p>
+				<h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">MnMIXecbWbkcpZdgIeeh</h1>
+				<p class="text-sm md:text-base font-normal text-gray-600">Published 8/5/4</p>
 			</span></span></div>
 
 
@@ -138,13 +179,13 @@
       <!-- Tags -->
       <div class="text-base mt-10 md:text-sm text-gray-500 px-4 py-6">
         Tags:
-        bqsgPAGFBZqiwjpvDgzocfKP
+        RBlnQkzqdaejc . Ao . XqrsDAFjgcYQfEOggzXtbfU
       </div>
       <!-- Divider -->
       <hr class="border-b-2 border-gray-400 mb-8 mx-4">
       <!-- Subscribe -->
       <div class="container px-4">
-        <div class="font-sans bg-white rounded-lg shadow-md p-4 text-center">
+        <div class="font-sans bg-white dark:bg-dark rounded-lg shadow-md p-4 text-center">
           <h2 class="font-bold break-normal text-xl md:text-3xl">Subscribe to my Newsletter</h2>
           <h3 class="font-bold break-normal text-gray-600 text-sm md:text-base">Get the latest posts delivered right to your inbox</h3>
           <div class="w-full text-center pt-4">
