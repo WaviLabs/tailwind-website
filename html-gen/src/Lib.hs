@@ -95,7 +95,9 @@ wrapBody jsFile innerHtml = do
       meta_ [charset_ "utf-8"]
       meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1.0"]
       title_ "Wavi Labs LLC"
-    body_ innerHtml
+    body_
+      [mkClasses_ "bg-white dark:bg-dark font-sans text-blue leading-normal tracking-normal gradient"]
+      innerHtml
     script_ [src_ $ jsFile <> ".js"] ("" :: Text)
 
 polyline_ :: Term arg result => arg -> result
