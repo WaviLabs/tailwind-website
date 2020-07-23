@@ -35,6 +35,11 @@ PS["Main"].main();
 var navMenuDiv = document.getElementById("nav-content");
 var navMenu = document.getElementById("nav-toggle");
 
+// Mini navbar resize
+window.addEventListener('resize', () => {
+  navMenuDiv.classList.add("hidden");
+});
+
 document.onclick = check;
 function check(e){
   var target = (e && e.target) || (event && event.srcElement);
