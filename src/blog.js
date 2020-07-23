@@ -26,11 +26,15 @@ prevButton.addEventListener("click", prevButtonAction);
 nextButton.addEventListener("click", nextButtonAction);
 
 window.addEventListener('resize', () => {
-  pageIndex = 0;
   document
   .getElementById("small-pagination")
   .children[0]
   .innerHTML = pageIndex + 1
+  if (numberOfPages <= 5) {
+    var activePaginationButton = pagination.querySelector(".bg-blue");
+    activePaginationButton.classList.remove("bg-blue","text-white");
+    pagination.children[pageIndex].classList.add("bg-blue","text-white");
+  }
 });
 
 function shiftPaginationForward () {

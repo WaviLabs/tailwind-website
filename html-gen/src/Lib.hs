@@ -353,7 +353,7 @@ blogHtml numOfPosts = wrapBody "blog" $ do
                   , value_ "Catch The Wave"
                   , name_ "subscribe"
                   , id_ "mc-embedded-subscribe"
-                  , mkClasses_ "button cursor-pointer hover:bg-blue dark-hover:bg-green text-blue dark:text-green hover:text-white dark-hover:text-dark rounded shadow py-2 px-4 text-2xl font-bold"
+                  , mkClasses_ "button bg-transparent cursor-pointer hover:bg-blue dark-hover:bg-green text-blue dark:text-green hover:text-white dark-hover:text-dark rounded shadow py-2 px-4 text-2xl font-bold"
                   ]
       hr_ [mkClasses_ "border-b-2 border-gray-400 my-8 mx-4"]
 
