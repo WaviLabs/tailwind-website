@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Oswald', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI'],
-      serif: ['Cardo', 'Georgia, Cambria', 'Times New Roman']
+      serif: ['Recursive', 'Georgia, Cambria', 'Times New Roman']
     },
     extend: {
       screens: {
