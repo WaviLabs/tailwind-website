@@ -5,23 +5,11 @@
 @import "tailwindcss/utilities";
 
 .btn {
-  @apply bg-transparent text-blue border-blue border-2 rounded shadow py-2 px-4 text-xl;
+  @apply bg-transparent border-blue border-2 rounded shadow py-2 px-4 text-xl;
 }
 
 .btn:hover {
-  @apply bg-blue text-white;
-}
-
-@variants dark {
-  .btn {
-    @apply text-green border-green;
-  }
-}
-
-@variants dark-hover {
-  .btn {
-    @apply text-dark bg-green;
-  }
+  @apply bg-blue rounded shadow py-2 px-4 text-xl;
 }
 
 .toggle__dot {
