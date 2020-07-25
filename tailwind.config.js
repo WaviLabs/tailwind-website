@@ -1,6 +1,10 @@
 module.exports = {
   purge: [],
   theme: {
+    fontFamily: {
+      sans: ['Oswald', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI'],
+      serif: ['Cardo', 'Georgia, Cambria', 'Times New Roman']
+    },
     extend: {
       screens: {
         light: { raw: "(prefers-color-scheme: light)" },

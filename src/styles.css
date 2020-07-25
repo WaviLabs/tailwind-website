@@ -4,6 +4,15 @@
 
 @import "tailwindcss/utilities";
 
+h1, h2, h3 {
+  @apply font-sans;
+  text-transform: uppercase;
+}
+
+p {
+  @apply font-serif;
+}
+
 .btn {
   @apply bg-transparent border-blue border-2 rounded shadow py-2 px-4 text-xl;
 }
