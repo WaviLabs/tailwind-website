@@ -22,10 +22,12 @@ import Lucid
   , html_
   , h1_
   , h2_
+  , h3_
   , h5_
   , img_
   , input_
   , label_
+  , link_
   , li_
   , nav_
   , script_
@@ -49,6 +51,7 @@ import Lucid
   , method_
   , name_
   , placeholder_
+  , rel_
   , src_
   , style_
   , tabindex_
@@ -106,6 +109,8 @@ wrapBody jsFile innerHtml = do
       meta_ [charset_ "utf-8"]
       meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1.0"]
       title_ "Wavi Labs LLC"
+      -- <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Recursive&display=swap" rel="stylesheet">
+      link_ [href_ "https://fonts.googleapis.com/css2?family=Oswald&family=Recursive&display=swap", rel_ "stylesheet"]
     body_
       [mkClasses_ "bg-white dark:bg-dark font-sans text-blue leading-normal tracking-normal gradient"]
       innerHtml
@@ -163,16 +168,16 @@ navbar = do
       div_ [mkClasses_ "lg:flex hidden text-lg"] $ do
         span_ [] $ do
           a_
-            [href_ "./services.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
+            [href_ "./index.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 mr-4 hover:underline"]
+            "Home"
+          a_
+            [href_ "./services.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 mr-4 hover:underline"]
             "Services"
           a_
-            [href_ "./blogT.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
+            [href_ "./blogT.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 mr-4 hover:underline"]
             "Blog"
           a_
-            [href_ "#", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
-            "Code"
-          a_
-            [href_ "./faqT.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 text-blue hover:text-white mr-4"]
+            [href_ "./faqT.html", mkClasses_ "block mt-4 lg:inline-block lg:mt-0 mr-4 hover:underline"]
             "FAQ"
       a_ [href_ "./index.html"] $ do
         -- Big logo for large and above
@@ -181,17 +186,16 @@ navbar = do
         -- Small for less than large
         div_ [mkClasses_ "flex items-center lg:hidden"] $
           img_ [src_ "logo.png", alt_ "Wavi Labs logo", width_ "200", height_ "200", viewBox_ "0 0 200 200"]
-      -- Random buttons for large navbar
       div_ [mkClasses_ "lg:flex lg:items-center hidden text-lg"] $ do
         label_ [for_ "toggleA", mkClasses_ "flex items-center cursor-pointer"] $ do
-          div_ [mkClasses_ "mr-3 text-gray-700 font-medium"] $
-            img_ [src_ "sun.svg", alt_ "sun"]
+          div_ [mkClasses_ "mr-3 text-dark dark:text-white font-medium"] $
+            img_ [mkClasses_ "fill-current", src_ "sun.svg", alt_ "sun"]
           div_ [class_ "relative"] $ do
             input_ [id_ "toggleA", type_ "checkbox", class_ "hidden"]
             div_ [mkClasses_ "toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"] ""
             div_ [mkClasses_ "toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"] ""
-          div_ [mkClasses_ "ml-3 text-gray-700 font-medium"] $
-            img_ [src_ "moon.svg", alt_ "moon"]
+          div_ [mkClasses_ "ml-3 text-dark dark:text-green font-medium"] $
+            img_ [class_ "fill-current", src_ "moon.svg", alt_ "moon"]
       -- Small hamburger icon for less than large
       div_ [mkClasses_ "block items-center lg:hidden text-lg"] $
         button_ [id_ "nav-toggle", mkClasses_ "flex flex-wrap items-center px-3 py-2 border rounded text-blue border-blue"] $
@@ -201,60 +205,60 @@ navbar = do
       -- Hamburger content
       div_ [id_ "nav-content", mkClasses_ "w-full items-center mt-2 z-20 hidden"] $
         ul_ [mkClasses_ "list-reset flex flex-col justify-end flex-1 items-center"] $ do
-          li_ $ a_ [href_ "./blogT.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
+          li_ $ a_ [href_ "./index.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Home"
           li_ $ a_ [href_ "./services.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Services"
-          li_ $ a_ [href_ "#", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Code"
+          li_ $ a_ [href_ ",./blogT.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
           li_ $ a_ [href_ "./faqT.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "FAQ"
           li_ $
             label_ [for_ "toggleB", mkClasses_ "flex items-center cursor-pointer"] $ do
-              div_ [mkClasses_ "mr-3 text-gray-700 font-medium"] $
-                img_ [src_ "sun.svg", alt_ "sun"]
+              div_ [mkClasses_ "ml-3 text-dark dark:text-green font-medium"] $
+                img_ [class_ "fill-current", src_ "sun.svg", alt_ "sun"]
               div_ [class_ "relative"] $ do
                 input_ [id_ "toggleB", type_ "checkbox", class_ "hidden"]
                 div_ [mkClasses_ "toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"] ""
                 div_ [mkClasses_ "toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"] ""
-              div_ [mkClasses_ "ml-3 text-gray-700 font-medium"] $
-                img_ [src_ "moon.svg", alt_ "moon"]
+              div_ [mkClasses_ "ml-3 text-dark dark:text-green font-medium"] $
+                img_ [class_ "fill-current", src_ "moon.svg", alt_ "moon"]
 
 footer :: Html ()
 footer =
-  footer_ [mkClasses_ "bg-gray-100"] $
+  footer_ [mkClasses_ "bg-gray-100 dark:bg-dark_alt"] $
     div_ [mkClasses_ "container mx-auto px-6 pt-10 pb-6"] $
       div_ [mkClasses_ "flex flex-wrap"] $ do
         div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
-          h5_ [mkClasses_ "uppercase mb-6 font-bold"] "Links"
-          ul_ [mkClasses_ "mb-4"] $ do
+          h3_ [mkClasses_ "dark:text-green"] "Links"
+          ul_ [mkClasses_ "mb-4 text-dark dark:text-blue"] $ do
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "FAQ"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "FAQ"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Help"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "Help"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Support"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "Support"
         div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
-          h5_ [mkClasses_ "uppercase mb-6 font-bold"] "Legal"
-          ul_ [mkClasses_ "mb-4"] $ do
+          h3_ [mkClasses_ "dark:text-green"] "Legal"
+          ul_ [mkClasses_ "mb-4 text-dark dark:text-blue"] $ do
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Terms"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "Terms"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Privacy"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "Privacy"
         div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
-          h5_ [mkClasses_ "uppercase mb-6 font-bold"] "Social"
-          ul_ [mkClasses_ "mb-4"] $ do
+          h3_ [mkClasses_ "dark:text-green"] "Social"
+          ul_ [mkClasses_ "mb-4 text-dark dark:text-blue"] $ do
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "GitHub"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "GitHub"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Instagram"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "Instagram"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Twitter"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "Twitter"
         div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
-          h5_ [mkClasses_ "uppercase mb-6 font-bold"] "Company"
-          ul_ [mkClasses_ "mb-4"] $ do
+          h3_ [mkClasses_ "dark:text-green"] "Company"
+          ul_ [mkClasses_ "mb-4 text-dark dark:text-blue"] $ do
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Official Blog"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "Official Blog"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "About Us"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "About Us"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline text-gray-600 hover:text-orange-500"] "Contact"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "Contact"
 
 -----------
 -- PAGES --
@@ -289,7 +293,7 @@ blogHtml numOfPosts = wrapBody "blog" $ do
     blogHeader :: Html ()
     blogHeader =
       div_ [mkClasses_ "container md:flex md:justify-between align-middle mx-auto pt-40 pb-10"] $ do
-        h1_ [mkClasses_ "text-4xl text-blue font-bold"] "Wavi Labs Archive"
+        h2_ "Wavi Labs Archive"
         div_ [mkClasses_ "flex items-center border-b border-teal-500 py-2"] $ do
           input_
             [ mkClasses_ "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -309,7 +313,6 @@ blogHtml numOfPosts = wrapBody "blog" $ do
 
     blogMailchimpForm :: Html ()
     blogMailchimpForm = do
-      hr_ [mkClasses_ "border-b-2 border-gray-400 mb-8 mx-4"]
       div_ [id_ "mc_embed_signup", mkClasses_ "container mx-auto px-4"] $ do
         form_
           [ action_ "https://wavi-labs.us17.list-manage.com/subscribe/post?u=e4b25a75af7f665ebcdf444d9&amp;id=991e220301"
@@ -320,19 +323,14 @@ blogHtml numOfPosts = wrapBody "blog" $ do
           , target_ "_blank"
           , novalidate_
           ] $ do
-            div_ [id_ "mc_embed_signup_scroll", mkClasses_ "font-sans bg-white dark:bg-dark rounded-lg shadow-md p-4 text-center"] $ do
-              h2_ [mkClasses_ "font-bold break-normal text-xl md:text-3xl"] "Subscribe for updates and more!"
-              div_ [class_ "indicates-required"] $ do
-                span_ [class_ "asterisk"] "*"
-                " indicates required"
+            div_ [id_ "mc_embed_signup_scroll", mkClasses_ "p-4 text-center"] $ do
+              h1_ "Subscribe for updates and more!"
               div_ [mkClasses_ "mc-field-group w-full text-center pt-4"] $
                 div_ [mkClasses_ "max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center"] $ do
                   label_
                     [ for_ "mce-EMAIL"
-                    , mkClasses_ "flex-1 mt-4 block md:inline-block appearance-none text-blue text-base font-semibold tracking-wider uppercase py-4 rounded"
-                    ] $ do
-                      "Email Address "
-                      span_ [class_ "asterisk"] "*"
+                    , mkClasses_ "flex-1 mt-4 block md:inline-block appearance-none"
+                    ] $ h3_ "Email Address:"
                   input_
                     [ type_ "email"
                     , value_ ""
@@ -353,9 +351,8 @@ blogHtml numOfPosts = wrapBody "blog" $ do
                   , value_ "Catch The Wave"
                   , name_ "subscribe"
                   , id_ "mc-embedded-subscribe"
-                  , mkClasses_ "button bg-transparent cursor-pointer hover:bg-blue dark-hover:bg-green text-blue dark:text-green hover:text-white dark-hover:text-dark rounded shadow py-2 px-4 text-2xl font-bold"
+                  , mkClasses_ "btn text-blue hover:text-white dark-hover:text-dark text-4xl mt-8 mb-16"
                   ]
-      hr_ [mkClasses_ "border-b-2 border-gray-400 my-8 mx-4"]
 
 blogPagination :: Int -> Html ()
 blogPagination numberOfPosts =
