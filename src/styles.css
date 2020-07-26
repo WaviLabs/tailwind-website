@@ -4,8 +4,12 @@
 
 @import "tailwindcss/utilities";
 
+a {
+  @apply font-serif text-2xl;
+}
+
 h1, h2, h3 {
-  @apply font-sans;
+  @apply font-sans font-semibold;
   text-transform: uppercase;
 }
 
