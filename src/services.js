@@ -6,16 +6,16 @@ import Chart from 'chart.js';
 var ctx1 = document.getElementById('myChart1');
 
 const inputs1 = [0,1,2,3,4,5,6,7,8,9,10];
-const inputs2 = [1,2,3,4,5,6,7,8,9,10,11];
+const inputs2 = [0,1,2,3,4,5,6,7,8,9,10];
 
-const data1 = inputs1.map(x => x**2);
+const data1 = inputs1.map(x => x**3);
 
-const data2 = inputs2.map(x => Math.log2(x ** 10));
+const data2 = inputs2.map(x => x**2);
 
 var myChart1 = new Chart(ctx1, {
   type: 'line',
   data: {
-    labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
     datasets: [{
       label: 'Traditional',
       data: data1,
@@ -39,7 +39,8 @@ var myChart1 = new Chart(ctx1, {
     responsive: true,
     title: {
       display: true,
-      text: 'Complexity Over Features Added'
+      text: 'Complexity Over Features Added',
+      fontSize: 40
     },
     tooltips: {
       enabled: false
@@ -53,7 +54,8 @@ var myChart1 = new Chart(ctx1, {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Additional Features'
+          labelString: 'Additional Features',
+          fontSize: 30
         },
         ticks:{
           display: false
@@ -63,12 +65,18 @@ var myChart1 = new Chart(ctx1, {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Complexity'
+          labelString: 'Complexity',
+          fontSize: 30
         },
         ticks:{
           display: false
         }
       }]
+    },
+    legend: {
+      labels: {
+        fontSize: 20
+      }
     }
   }
 });
@@ -97,11 +105,11 @@ var myChart2 = new Chart(ctx2, {
     title: {
       display: true,
       text: 'Wavi Labs Test Coverage',
-      fontSize: 36
+      fontSize: 40
     },
     legend: {
       labels: {
-        fontSize: 24
+        fontSize: 20
       }
     },
     tooltips: {
@@ -133,11 +141,11 @@ function toggleChart2 () {
         title: {
           display: true,
           text: 'Traditional Test Coverage',
-          fontSize: 36
+          fontSize: 40
         },
         legend: {
           labels: {
-            fontSize: 24
+            fontSize: 20
           }
         },
         tooltips: {
@@ -168,11 +176,11 @@ function toggleChart2 () {
         title: {
           display: true,
           text: 'Wavi Labs Test Coverage',
-          fontSize: 36
+          fontSize: 40
         },
         legend: {
           labels: {
-            fontSize: 24
+            fontSize: 20
           }
         },
         tooltips: {
