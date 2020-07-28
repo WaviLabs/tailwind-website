@@ -1,4 +1,3 @@
-import "./styles.css";
 import "./main.js";
 
 import $ from 'jquery';

@@ -8,7 +8,8 @@
     "md-gen": "cd ./html-gen && stack build && stack test",
     "html-gen": "cd ./html-gen && stack build --fast && stack exec html-gen-exe",
     "purs-to-js": "cd ./purs && bash purs-to-js.sh",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "postcss src/styles.css -o dist/styles.css"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "jquery": "^3.5.1",
+    "postcss-cli": "^7.1.1",
     "postcss-import": "^12.0.1"
   }
 }

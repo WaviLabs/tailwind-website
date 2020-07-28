@@ -111,6 +111,7 @@ wrapBody jsFile innerHtml = do
       title_ "Wavi Labs LLC"
       -- <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Recursive&display=swap" rel="stylesheet">
       link_ [href_ "https://fonts.googleapis.com/css2?family=Oswald&family=Recursive&display=swap", rel_ "stylesheet"]
+      link_ [href_ "./styles.css", rel_ "stylesheet"]
     body_
       [mkClasses_ "bg-white dark:bg-dark font-sans text-blue leading-normal tracking-normal gradient"]
       innerHtml

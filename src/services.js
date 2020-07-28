@@ -1,4 +1,3 @@
-import "./styles.css";
 import "./main.js";
 
 import Chart from 'chart.js';
