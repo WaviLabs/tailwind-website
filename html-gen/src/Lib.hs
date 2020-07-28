@@ -205,13 +205,13 @@ navbar = do
       -- Hamburger content
       div_ [id_ "nav-content", mkClasses_ "w-full items-center mt-2 z-20 hidden"] $
         ul_ [mkClasses_ "list-reset flex flex-col justify-end flex-1 items-center"] $ do
-          li_ $ a_ [href_ "./index.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Home"
-          li_ $ a_ [href_ "./services.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Services"
-          li_ $ a_ [href_ ",./blogT.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "Blog"
-          li_ $ a_ [href_ "./faqT.html", mkClasses_ "inline-block py-2 px-4 text-black no-underline"] "FAQ"
+          li_ $ a_ [href_ "./index.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "Home"
+          li_ $ a_ [href_ "./services.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "Services"
+          li_ $ a_ [href_ ",./blogT.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "Blog"
+          li_ $ a_ [href_ "./faqT.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "FAQ"
           li_ $
             label_ [for_ "toggleB", mkClasses_ "flex items-center cursor-pointer"] $ do
-              div_ [mkClasses_ "ml-3 text-dark dark:text-green font-medium"] $
+              div_ [mkClasses_ "mr-3 text-dark dark:text-green font-medium"] $
                 img_ [class_ "fill-current", src_ "sun.svg", alt_ "sun"]
               div_ [class_ "relative"] $ do
                 input_ [id_ "toggleB", type_ "checkbox", class_ "hidden"]

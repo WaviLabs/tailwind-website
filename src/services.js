@@ -39,7 +39,7 @@ var myChart1 = new Chart(ctx1, {
     responsive: true,
     title: {
       display: true,
-      text: 'Complexity Over Features Added',
+      text: 'Keeping Complexity Low',
       fontSize: 40
     },
     tooltips: {
@@ -54,7 +54,7 @@ var myChart1 = new Chart(ctx1, {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Additional Features',
+          labelString: 'Features',
           fontSize: 30
         },
         ticks:{
