@@ -5,7 +5,7 @@
 @import "tailwindcss/utilities";
 
 a {
-  @apply font-serif text-2xl;
+  @apply font-serif text-xl;
 }
 
 h1, h2, h3 {

@@ -78,6 +78,7 @@ checkboxA.addEventListener('change', flipDarkMode);
 checkboxB.addEventListener('change', flipDarkMode);
 
 function flipDarkMode () {
+  navMenuDiv.classList.add("hidden");
   console.log('Wonderboy');
   localStorage.darkMode = this.checked;
   console.log(localStorage.darkMode);
