@@ -37,6 +37,18 @@ window.addEventListener('resize', () => {
   }
 });
 
+Array.from(pagination.children).forEach((element) => {
+  element.addEventListener('click', () => {
+    var pageThisScope = parseInt(element.innerHTML);
+    var pageIndexThisScope = pageThisScope - 1;
+    var activePaginationButton = pagination.querySelector(".bg-blue");
+    activePaginationButton.classList.remove("bg-blue","text-white");
+    pagination.children[pageIndexThisScope].classList.add("bg-blue","text-white");
+    $("#blog-cards-grid").load("./blog-pages/" + pageThisScope + ".html");
+    pageIndex = pageThisScope - 1;
+  })
+})
+
 function shiftPaginationForward () {
   pagination.children[2].innerHTML = parseInt(pagination.children[2].innerHTML) + 1
   pagination.children[3].innerHTML = parseInt(pagination.children[3].innerHTML) + 1
