@@ -206,8 +206,8 @@ navbar = do
       div_ [id_ "nav-content", mkClasses_ "w-full items-center mt-2 z-20 hidden"] $
         ul_ [mkClasses_ "list-reset flex flex-col justify-end flex-1 items-center"] $ do
           li_ $ a_ [href_ "./index.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "Home"
+          li_ $ a_ [href_ "./blogT.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "Blog"
           li_ $ a_ [href_ "./services.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "Services"
-          li_ $ a_ [href_ ",./blogT.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "Blog"
           li_ $ a_ [href_ "./faqT.html", mkClasses_ "inline-block py-2 px-4 no-underline"] "FAQ"
           li_ $
             label_ [for_ "toggleB", mkClasses_ "flex items-center cursor-pointer"] $ do
@@ -229,36 +229,36 @@ footer =
           h3_ [mkClasses_ "dark:text-green"] "Links"
           ul_ [mkClasses_ "mb-4 text-dark dark:text-blue"] $ do
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "FAQ"
-            li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "Help"
-            li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "Support"
+              a_ [href_ "./faqT.html", mkClasses_ "hover:underline"] "FAQ"
+            -- li_ [mkClasses_ "mt-2"] $
+            --   a_ [href_ "#", mkClasses_ "hover:underline"] "Help"
+            -- li_ [mkClasses_ "mt-2"] $
+            --   a_ [href_ "#", mkClasses_ "hover:underline"] "Support"
         div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
           h3_ [mkClasses_ "dark:text-green"] "Legal"
           ul_ [mkClasses_ "mb-4 text-dark dark:text-blue"] $ do
+            -- li_ [mkClasses_ "mt-2"] $
+            --   a_ [href_ "#", mkClasses_ "hover:underline"] "Contract"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "Terms"
-            li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "Privacy"
+              a_ [href_ "#", mkClasses_ "hover:underline"] "License"
         div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
           h3_ [mkClasses_ "dark:text-green"] "Social"
           ul_ [mkClasses_ "mb-4 text-dark dark:text-blue"] $ do
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "GitHub"
+              a_ [href_ "https://github.com/wavi-labs", mkClasses_ "hover:underline"] "GitHub"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "Instagram"
+              a_ [href_ "https://www.instagram.com/wavi_labs", mkClasses_ "hover:underline"] "Instagram"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "Twitter"
+              a_ [href_ "https://twitter.com/wavi_labs", mkClasses_ "hover:underline"] "Twitter"
         div_ [mkClasses_ "w-full md:w-1/4 text-center md:text-left"] $ do
           h3_ [mkClasses_ "dark:text-green"] "Company"
           ul_ [mkClasses_ "mb-4 text-dark dark:text-blue"] $ do
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "Official Blog"
+              a_ [href_ "./blogT.html", mkClasses_ "hover:underline"] "Official Blog"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "About Us"
+              a_ [href_ "./index.html", mkClasses_ "hover:underline"] "About Us"
             li_ [mkClasses_ "mt-2"] $
-              a_ [href_ "#", mkClasses_ "hover:underline"] "Contact"
+              a_ [href_ "mailto:wavi.labs@gmail.com", mkClasses_ "hover:underline"] "Contact"
 
 -----------
 -- PAGES --

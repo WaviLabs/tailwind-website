@@ -284,9 +284,46 @@
     </div>
   </nav>
   <!-- NAVBAR END -->
-  <section class="py-8 mt-40">
+  <section class="py-8 mt-16 lg:mt-32">
     <div class="mx-auto items-center">
-      <div class="flex flex-col justify-center items-center mb-10">
+            <!-- Our Journey -->
+      <div class="flex flex-wrap-reverse">
+        <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
+          <canvas id="myChart1" width="100" height="100"></canvas>
+        </div>
+        <div class="text-blue flex flex-col w-full lg:w-1/2 justify-center items-center rounded shadow px-8 py-8">
+          <h1>Type Driven Development</h1>
+          <p>
+            With type driven development we can ensure that the software we craft is modular, easily refactorable, and less complex as new features are added. By leveraging the type system of strongly typed programming languages like Haskell and PureScript, we can move quickly to keep up with the needs of our clients.
+          </p>
+          <a class="mt-6 btn text-blue hover:text-white dark-hover:text-dark" href="./blogT.html">
+            <h3>READ MORE</h3>
+          </a>
+        </div>
+      </div>
+
+      <br>
+      <br>
+      <!-- Change the chart below to a radar plot or something -->
+      <div class="flex flex-wrap">
+        <div class="text-blue flex flex-col w-full lg:w-1/2 justify-center items-center rounded shadow px-8 py-8">
+          <h1>Superb Test Coverage</h1>
+          <p>
+            Our use of funcional programming and strong type systems guarantees that the software we craft is free from an entire class of bugs (type errors). On top of that, we use advanced testing methods like property-based testing to catch even more bugs and ensure software runs the way it should.
+          </p>
+          <a class="mt-6 btn text-blue hover:text-white dark-hover:text-dark" href="./blogT.html">
+            <h3>READ MORE</h3>
+          </a>
+        </div>
+        <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
+          <canvas id="myChart2" width="100" height="100"></canvas>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="flex flex-col justify-center items-center mt-10">
         <h1>
           Services
         </h1>
@@ -631,50 +668,11 @@
               If you need to automate business tasks or collect data, Wavi Labs can build a scalable, humane software robot to fit your needs.
             </p>
           </section>
-
-          <button class="btn text-blue hover:text-white dark-hover:text-dark">
+          <!-- <button class="btn text-blue hover:text-white dark-hover:text-dark">
             <h3>Get A Quote</h1>
-          </button>
-
+          </button> -->
         </div>
       </div>
-
-      <!-- Our Journey -->
-      <div class="flex flex-wrap-reverse">
-        <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
-          <canvas id="myChart1" width="100" height="100"></canvas>
-        </div>
-        <div class="text-blue flex flex-col w-full lg:w-1/2 justify-center items-center rounded shadow px-8 py-8">
-          <h1>Type Driven Development</h1>
-          <p>
-            With type driven development we can ensure that the software we craft is modular, easily refactorable, and less complex as new features are added. By leveraging the type system of strongly typed programming languages like Haskell and PureScript, we can move quickly to keep up with the needs of our clients.
-          </p>
-          <button class="mt-6 btn text-blue hover:text-white dark-hover:text-dark">
-            <h3>READ MORE</h3>
-          </button>
-        </div>
-      </div>
-
-      <br>
-      <br>
-      <!-- Change the chart below to a radar plot or something -->
-      <div class="flex flex-wrap">
-        <div class="text-blue flex flex-col w-full lg:w-1/2 justify-center items-center rounded shadow px-8 py-8">
-          <h1>Superb Test Coverage</h1>
-          <p>
-            Our use of funcional programming and strong type systems guarantees that the software we craft is free from an entire class of bugs (type errors). On top of that, we use advanced testing methods like property-based testing to catch even more bugs and ensure software runs the way it should.
-          </p>
-          <button class="mt-6 btn text-blue hover:text-white dark-hover:text-dark">
-            <h3>READ MORE</h3>
-          </button>
-        </div>
-        <div class="flex flex-col w-full lg:w-1/2 justify-center items-center px-8 py-8">
-          <canvas id="myChart2" width="100" height="100"></canvas>
-        </div>
-      </div>
-
-      <br>
-      <br>
 
       <!-- TODO: Implelment the third thing here -->
       <!-- <div class="flex flex-wrap">
@@ -723,24 +721,24 @@
           <h3 class="dark:text-green">Links</h3>
           <ul class="mb-4 text-dark dark:text-blue">
             <li class="mt-2">
-              <a href="#" class="hover:underline">FAQ</a>
+              <a href="./faqT.html" class="hover:underline">FAQ</a>
             </li>
-            <li class="mt-2">
+            <!-- <li class="mt-2">
               <a href="#" class="hover:underline">Help</a>
             </li>
             <li class="mt-2">
               <a href="#" class="hover:underline">Support</a>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="w-full md:w-1/4 text-center md:text-left">
           <h3 class="dark:text-green">Legal</h3>
           <ul class="mb-4 text-dark dark:text-blue">
+            <!-- <li class="mt-2">
+              <a href="#" class="hover:underline">Contract</a>
+            </li> -->
             <li class="mt-2">
-              <a href="#" class="hover:underline">Terms</a>
-            </li>
-            <li class="mt-2">
-              <a href="#" class="hover:underline">Privacy</a>
+              <a href="#" class="hover:underline">License</a>
             </li>
           </ul>
         </div>
@@ -748,13 +746,13 @@
           <h3 class="dark:text-green">Social</h3>
           <ul class="mb-4 text-dark dark:text-blue">
             <li class="mt-2">
-              <a href="#" class="hover:underline">GitHub</a>
+              <a href="https://github.com/wavi-labs" class="hover:underline">GitHub</a>
             </li>
             <li class="mt-2">
-              <a href="#" class="hover:underline">Instagram</a>
+              <a href="https://www.instagram.com/wavi_labs" class="hover:underline">Instagram</a>
             </li>
             <li class="mt-2">
-              <a href="#" class="hover:underline">Twitter</a>
+              <a href="https://twitter.com/wavi_labs" class="hover:underline">Twitter</a>
             </li>
           </ul>
         </div>
@@ -762,13 +760,13 @@
           <h3 class="dark:text-green">Company</h3>
           <ul class="mb-4 text-dark dark:text-blue">
             <li class="mt-2">
-              <a href="#" class="hover:underline">Official Blog</a>
+              <a href="./blogT.html" class="hover:underline">Official Blog</a>
             </li>
             <li class="mt-2">
-              <a href="#" class="hover:underline">About Us</a>
+              <a href="./index.html" class="hover:underline">About Us</a>
             </li>
             <li class="mt-2">
-              <a href="#" class="hover:underline">Contact</a>
+              <a href="mailto:wavi.labs@gmail.com" class="hover:underline">Contact</a>
             </li>
           </ul>
         </div>
