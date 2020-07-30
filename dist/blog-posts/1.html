@@ -324,13 +324,15 @@
         </figure>
         <p>Issue-wanted has five main components:</p>
         <ol type="1">
-        <li><p>GitHub API</p>
+        <li>GitHub API</li>
+        </ol>
         <p>In order to aggregate all of the Haskell issues and repositories we need to interact with the GitHub API. To do that, we are using phadej’s <a href="http://hackage.haskell.org/package/github">github</a> library. This library provides functions that are essentially wrappers around the GitHub REST API. They allow us to query the API with convenient functions that take query strings as arguements. For example:</p>
-        <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource haskell numberLines"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">-- | Fetch all repositories with Haskell language and label &quot;good first issue&quot;</span></span>
-        <span id="cb1-2"><a href="#cb1-2"></a><span class="ot">fetchHaskellReposGFI ::</span> <span class="dt">IO</span> (<span class="dt">Either</span> <span class="dt">Error</span> (<span class="dt">SearchResult</span> <span class="dt">Repo</span>))</span>
-        <span id="cb1-3"><a href="#cb1-3"></a>fetchHaskellReposGFI <span class="ot">=</span> searchRepos <span class="st">&quot;language:haskell good-first-issues:&gt;0&quot;</span></span></code></pre></div>
+        <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">-- | Fetch all repositories with Haskell language and label &quot;good first issue&quot;</span></span>
+        <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ot">fetchHaskellReposGFI ::</span> <span class="dt">IO</span> (<span class="dt">Either</span> <span class="dt">Error</span> (<span class="dt">SearchResult</span> <span class="dt">Repo</span>))</span>
+        <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>fetchHaskellReposGFI <span class="ot">=</span> searchRepos <span class="st">&quot;language:haskell good-first-issues:&gt;0&quot;</span></span></code></pre></div>
         <p>This function either returns all Haskell repositiories that have at least one issue with the label <code>good first issue</code>, or an <code>Error</code>.</p>
-        <p>At one point we considered using the GitHub GraphQL API (V4), but we thought the github library was to convenient to pass up.</p></li>
+        <p>At one point we considered using the GitHub GraphQL API (V4), but we thought the github library was to convenient to pass up.</p>
+        <ol start="2" type="1">
         <li><p>PostgreSQL Database</p>
         <p>We will be using a PostgreSQL database to store all the Haskell repositories and issues we get from querying the GitHub API. To bridge the gap between our application and database we will be using the <a href="http://hackage.haskell.org/package/postgresql-simple">postgresql-simple</a> library. Postgresql-simple is a “Mid-Level PostgreSQL client library” that provides many useful functions for interacting with a PostgreSQL database. You may be wondering why we didn’t go with a higher-level, more type safe, EDSL library like opaleye, esqueletto, or squeal. The reason why is beacuse those libraries are too “powerful” for what we need. Our database schema isn’t super complex, and our most complex queries are basic join statements. Postgresql-simple is great becasue it gives us just the right amount of “power” to do what we need.</p></li>
         <li><p>Asynchronous Worker</p>
@@ -361,6 +363,7 @@
         <h2 id="footnotes">Footnotes:</h2>
         <p>[1] <a href="https://graninas.com/functional-design-and-architecture-book/">https://graninas.com/functional-design-and-architecture-book/</a></p>
         <p>This book by Alexander Granin is looking to change that. I’ve read some of the sample chapters, and from what I’ve read it seems like a good book for learning more about these sort of ideas. I believe there are also some books by Graham Hutton or someone else that discuss the architecture and design of functional programs, but I’m not sure how good or relevant they are.</p>
+        <hr>
       </div>
       <!--/ Post Content-->
       <!-- TODO: Make Tags functional links -->
@@ -395,7 +398,7 @@
         </form>
       </div>
       <!-- Next & Previous Links -->
-      <div class="font-sans flex justify-between content-center px-4 pb-12">
+      <!-- <div class="font-sans flex justify-between content-center px-4 pb-12">
         <div class="text-left">
           <span class="text-xs md:text-sm font-normal text-gray-600">&lt; Previous Post</span><br>
           <p><a href="#"
@@ -408,7 +411,7 @@
               class="break-normal text-base md:text-sm text-teal-500 font-bold no-underline hover:underline">Blog
               title</a></p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <!-- FOOOTER START -->

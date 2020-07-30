@@ -1,7 +1,7 @@
 @tailwind base;
 
 a {
-  @apply text-xl;
+  @apply font-serif text-xl;
 }
 
 #blogPostContent a {
@@ -34,7 +34,7 @@ h3 {
 }
 
 #blogPostContent p > code {
-  @apply rounded shadow text-xl;
+  @apply rounded shadow text-xl bg-gray-400 text-purple-600 p-1;
 }
 
 #blogPostContent ol {
@@ -88,20 +88,23 @@ input:checked ~ .toggle__dot {
   @apply bg-blue shadow py-2 px-4;
 }
 
-* {
-  font-family: monospace;
+a.sourceLine {
+  display: inline-block;
+  line-height: 1.25;
 }
 
-p > code {
-  background: lightgrey;
-  color:  purple;
-  font-size: 1.0rem;
-  padding: 0.2rem;
+a.sourceLine {
+  pointer-events: none;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+a.sourceLine:empty {
+  height: 1.2em;
 }
 
 .sourceCode {
-  overflow: visible;
-  background: lightgray;
+  @apply bg-gray-400 overflow-visible rounded;
 }
 
 code.sourceCode {
@@ -131,37 +134,6 @@ pre.sourceCode {
       text-indent: -1em;
       padding-left: 1em;
   }
-}
-
-pre.numberSource a.sourceLine {
-  position: relative;
-  left: -4em;
-}
-
-pre.numberSource a.sourceLine::before {
-  content: attr(title);
-  position: relative;
-  left: -1em;
-  text-align: right;
-  vertical-align: baseline;
-  border: none;
-  pointer-events: all;
-  display: inline-block;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding: 0 4px;
-  width: 4em;
-  color: #aaaaaa;
-}
-
-pre.numberSource {
-  margin-left: 3em;
-  border-left: 1px solid #aaaaaa;
-  padding-left: 4px;
 }
 
 @media screen {
