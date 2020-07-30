@@ -9,7 +9,7 @@
     "html-gen": "cd ./html-gen && stack build --fast && stack exec html-gen-exe",
     "purs-to-js": "cd ./purs && bash purs-to-js.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "postcss src/styles.css -o dist/styles.css"
+    "build-css": "postcss src/styles.css -o dist/styles.css && postcss src/blogPost.css -o dist/blogPost.css"
   },
   "repository": {
     "type": "git",
