@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="../blogPost.css">
 </head>
 
-<body class="bg-white dark:bg-dark font-sans text-blue leading-normal tracking-normal gradient">
+<body class="bg-white dark:bg-dark text-dark dark:text-blue">
   <!-- NAVBAR START -->
   <nav class="fixed bg-white dark:bg-dark top-0 w-full z-10 p-6 shadow">
     <!-- LARGE NAVBAR -->
@@ -289,32 +289,30 @@
     <div class="w-full px-4 md:px-6">
       <!--Title-->
       <div class="font-sans">
-        <span class="text-base md:text-sm text-teal-500 font-bold">&lt;<span> <a href="../blogT.html"
-              class="text-base md:text-sm text-teal-500 font-bold no-underline hover:underline">BACK TO ARCHIVE</a>
+        <span class="font-bold">&lt;<span> <a href="../blogT.html"
+              class="font-bold">BACK TO ARCHIVE</a>
             <p></p>
-            <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">$title$</h1>
-            <p class="text-sm md:text-base font-normal text-gray-600">Published $date$</p>
+            <h1 class="font-bold pt-6 pb-2">$title$</h1>
+            <p class="text-lg font-normal text-gray-600">Published $date$</p>
           </span></span></div>
 
       <!--Lead Para-->
-      <div>
+      <div id="blogPostContent">
         $body$
       </div>
       <!--/ Post Content-->
       <!-- TODO: Make Tags functional links -->
       <!-- Tags -->
-      <div class="text-base mt-10 md:text-sm text-gray-500 px-4 py-6">
+      <!-- <div class="text-base mt-10 md:text-sm text-gray-500 px-4 py-6">
         Tags:
         ${ for(tags) }${ tags }${ sep } . ${ endfor }
-      </div>
-      <!-- Divider -->
-      <hr class="border-b-2 border-gray-400 mb-8 mx-4">
+      </div> -->
       <div id="mc_embed_signup" class="container mx-auto px-4">
         <form novalidate
           action="https://wavi-labs.us17.list-manage.com/subscribe/post?u=e4b25a75af7f665ebcdf444d9&amp;amp;id=991e220301"
           name="mc-embedded-subscribe-form" method="post" id="mc-embedded-subscribe-form" class="validate" target="_blank">
           <div id="mc_embed_signup_scroll" class="p-4 text-center">
-            <h1>Subscribe for updates and more!</h1>
+            <h1 class="text-4xl lg:text-6xl">Subscribe for updates and more!</h1>
             <div class="mc-field-group w-full text-center pt-4">
               <div class="max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center"><label for="mce-EMAIL"
                   class="flex-1 mt-4 block md:inline-block appearance-none">
@@ -330,12 +328,10 @@
             <div aria-hidden="true" style="position: absolute; left: -5000px;"><input value tabindex="-1"
                 name="b_e4b25a75af7f665ebcdf444d9_991e220301" type="text"></div>
             <div class="clear mt-4"><input value="Catch The Wave" name="subscribe" id="mc-embedded-subscribe" type="submit"
-                class="btn text-blue hover:text-white dark-hover:text-dark text-4xl my-8"></div>
+                class="btn text-blue hover:text-white dark-hover:text-dark text-2xl lg:text-4xl my-8"></div>
           </div>
         </form>
       </div>
-      <!-- Divider -->
-      <hr class="border-b-2 border-gray-400 my-8 mx-4">
       <!-- Next & Previous Links -->
       <div class="font-sans flex justify-between content-center px-4 pb-12">
         <div class="text-left">
